@@ -1,10 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Light application theme. -->
-    <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="LightTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/LightColorSurface</item>
         <item name="colorPrimaryDark">@color/LightColorDarkBackGround</item>
         <item name="colorAccent">@color/LightColorAccent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
         <item name="android:textColor">@color/LightColorBlack</item>
         <item name="android:textColorPrimary">@color/LightColorWhite</item>
     </style>
@@ -17,7 +18,7 @@
     </style>
 
     <style name="wf.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="android:textColor">?android:attr/colorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
     
     <style name="wf.Material.Button" parent="Widget.MaterialComponents.Button">
@@ -38,7 +39,7 @@
     </style>
 
     <style name="wf.TextAppearance.Toolbar" parent="TextAppearance.MaterialComponents.Button">
-        <item name="backgroundTint">@color/LightColorTransparent</item>
+        <item name="backgroundTint">?android:attr/colorAccent</item>
         <item name="android:textColor">?android:attr/colorPrimaryDark</item>
         <item name="android:textSize">18sp</item>
     </style>
@@ -49,16 +50,25 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
+    <style name="wf.CardView" parent="CardView">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardElevation">2dp</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="cardBackgroundColor">@color/LightColorWhiteCard</item>
+    </style>
+
     <style name="wf.Backdrop" parent="">
         <item name="android:background">?attr/colorAccent</item>
     </style>
 
 
     <!--Dark application theme-->
-    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/LightColorSurface</item>
-        <item name="colorPrimaryDark">@color/LightColorDarkBackGround</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+        <item name="colorPrimary">@color/LightColorTextPrimary</item>
+        <item name="colorPrimaryDark">@color/LightColorBlack</item>
         <item name="colorAccent">@color/LightColorAccent</item>
     </style>
 

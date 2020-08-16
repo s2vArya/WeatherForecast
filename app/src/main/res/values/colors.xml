@@ -5,8 +5,9 @@
     <color name="LightColorBackGround">#B56CD9FB</color>
     <color name="LightColorAccent">#03DAC5</color>
     <color name="LightColorWhite">#FFFFFF</color>
+    <color name="LightColorWhiteCard">#03DAC5</color>
     <color name="LightColorBlack">#000000</color>
-    <color name="LightColorTransparent">#00FFFFFF</color>
+    <color name="LightColorTextPrimary">#00424242</color>
 
     <color name="DarkColorSurface">#222222</color>
     <color name="DarkColorDarkBackGround">#000000</color>

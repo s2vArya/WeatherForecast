@@ -7,20 +7,21 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class WeatherAppActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_weather_app);
 
         SetUpToolBar();
     }
 
     private void SetUpToolBar() {
-        Toolbar toolbar = findViewById(R.id.appbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 AddOrRemoveCities();
                 break;
             case R.id.setting:
-                startActivity(new Intent(this,SettingsActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
 
         }
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ToggleTheme() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
     private void SearchLocationData() {
