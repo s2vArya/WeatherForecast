@@ -46,7 +46,6 @@ public class WeatherAppActivity extends AppCompatActivity {
             case R.id.setting:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }
