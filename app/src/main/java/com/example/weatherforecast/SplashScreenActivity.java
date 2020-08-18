@@ -34,6 +34,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void TransitionFunction() {
-        startActivity(new Intent(this, WeatherAppActivity.class));
+        startActivity(new Intent(this, ApiDataRequestActivity.class));
     }
 }

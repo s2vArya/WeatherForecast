@@ -27,4 +27,5 @@
     <string name="party_cloud">Party Cloud</string>
     <string name="cold_wind">Cold Wind</string>
     <string name="see_more"><![CDATA[See More...>]]></string>
+    <string name="openWeatherMapApi"><![CDATA[&APPID=0466c2473f115a4d226c8ce8b6280210]]></string>
 </resources>

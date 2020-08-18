@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class WeatherAppActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,7 @@ public class WeatherAppActivity extends AppCompatActivity {
     }
 
     private void SetUpToolBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.customToolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -44,7 +45,7 @@ public class WeatherAppActivity extends AppCompatActivity {
                 AddOrRemoveCities();
                 break;
             case R.id.setting:
-                startActivity(new Intent(this, SettingsActivity.class));
+                startActivity(new Intent(this, ApiDataRequestActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
