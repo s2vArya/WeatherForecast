@@ -38,8 +38,6 @@ public class ApiDataRequestActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     TextView tb;
 
-    DataFlowConstructor dataFlowConstructor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +46,6 @@ public class ApiDataRequestActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.show();
-        dataFlowConstructor=new DataFlowConstructor();
         RequestByCityName("Dibiyapur");
         tb = findViewById(R.id.textView5);
         SetToolBar();
@@ -75,27 +72,23 @@ public class ApiDataRequestActivity extends AppCompatActivity {
 
                             JSONArray weather = response.getJSONArray("weather");
                             JSONObject main_class = response.getJSONObject("main");
-                            //tb.setText(response.toString());
                             JSONObject wind = response.getJSONObject("wind");
                             JSONObject sys = response.getJSONObject("sys");
-
-                            JSONObject x = weather.getJSONObject(0);
+                            JSONObject main = weather.getJSONObject(0);
                             JSONObject descIndex = weather.getJSONObject(0);
                             JSONObject icon = weather.getJSONObject(0);
-                            _mainState = x.getString("main");
 
+                            _mainState = main.getString("main");
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
-
-                            _temp = main_class.getDouble("temp") + "°C";
-                            dataFlowConstructor.set_mainState(_temp);
-                            _feels_like = main_class.getString("feels_like");
-                            _temp_min = main_class.getString("temp_min");
-                            _temp_max = main_class.getString("temp_max");
-                            _pressure = main_class.getString("pressure") + "";
-                            _humidity = main_class.getString("humidity");
-                            _speed = wind.getString("speed");
-                            _degree = wind.getString("deg");
+                            _temp = Math.round(main_class.getDouble("temp") - 273) + "°C";
+                            _feels_like = Math.round(main_class.getDouble("feels_like")-273) + "°C";
+                            _temp_min = Math.round(main_class.getDouble("temp_min")-273) + "°C";
+                            _temp_max = Math.round(main_class.getDouble("temp_max")-273) + "°C";
+                            _pressure = Math.round(main_class.getDouble("pressure")) + " Pa";
+                            _humidity = Math.round(main_class.getDouble("humidity")) + " g/m\u00B3";
+                            _speed = Math.rint(wind.getDouble("speed")) + " m/sec";
+                            _degree = Math.rint(wind.getDouble("deg")) + "°";
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
                             tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
@@ -120,7 +113,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             Log.d("Connection Problem", e.toString());
                         }
-                        startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
+                        startActivity(new Intent(ApiDataRequestActivity.this, WeatherAppActivity.class));
                         progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
@@ -128,7 +121,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 Toast.makeText(ApiDataRequestActivity.this, "Connection Problem", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
+                startActivity(new Intent(ApiDataRequestActivity.this, WeatherAppActivity.class));
             }
         });
         // Add the request to the RequestQueue.

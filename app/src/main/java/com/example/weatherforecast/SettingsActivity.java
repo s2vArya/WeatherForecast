@@ -10,13 +10,11 @@ import androidx.appcompat.widget.Toolbar;
 public class SettingsActivity extends AppCompatActivity {
 
     TextView tb;
-    DataFlowConstructor d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        d=new DataFlowConstructor();
         tb = findViewById(R.id.textView4);
         SetToolbar();
     }

@@ -21,6 +21,9 @@
             android:orientation="vertical">
             <include layout="@layout/custom_toolbar"/>
             <include layout="@layout/activity_detail_card_view"/>
+            <include layout="@layout/activity_detail_card_view"/>
+            <include layout="@layout/activity_detail_card_view"/>
+            <include layout="@layout/activity_detail_card_view"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
