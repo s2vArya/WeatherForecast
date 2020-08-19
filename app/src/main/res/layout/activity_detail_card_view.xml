@@ -76,9 +76,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/LightColorDarkBackGround"
-                android:backgroundTint="@color/LightColorDarkBackGround"
+                android:background="@drawable/card_background_gradient"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -105,7 +105,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
                         android:text="Wind Speed"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toStartOf="@+id/divider"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +118,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         android:text="Wind Angle"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/divider"
@@ -132,7 +132,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="16dp"
                         android:text="Humidity"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/divider" />
