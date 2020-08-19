@@ -57,7 +57,7 @@ public class WeatherAppActivity extends AppCompatActivity {
         mMainTempTxt.setText(ApiDataRequestActivity.getTemp());
         mMainStateTxt.setText(ApiDataRequestActivity.getMainState());
         cardWeatherStatusText.setText(ApiDataRequestActivity.getDescription());
-        cardWeatherStatusTemperature.setText(ApiDataRequestActivity.getTemp());
+        cardWeatherStatusTemperature.setText(ApiDataRequestActivity.getTemp()+"°C");
         windSpeedTxt.setText("Wind Speed: "+ApiDataRequestActivity.getSpeed());
         windAngleTxt.setText("Direction: "+ApiDataRequestActivity.getDegree());
         pressureTxt.setText("Pressure: "+ApiDataRequestActivity.getPressure());
@@ -106,7 +106,7 @@ public class WeatherAppActivity extends AppCompatActivity {
         mainState.setText("State: " + ApiDataRequestActivity.getMainState());
         description.setText("Description: " + ApiDataRequestActivity.getDescription());
         iconId.setText(ApiDataRequestActivity.getIconId());
-        temp.setText(ApiDataRequestActivity.getTemp());
+        temp.setText(ApiDataRequestActivity.getTemp()+"°C");
         feelsLike.setText(ApiDataRequestActivity.getFeelsLike());
         tempMin.setText(ApiDataRequestActivity.getTempMin());
         tempMax.setText(ApiDataRequestActivity.getTempMax());

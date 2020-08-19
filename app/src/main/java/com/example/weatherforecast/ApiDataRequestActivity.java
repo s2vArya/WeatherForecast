@@ -130,7 +130,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
 
-                            _temp = Math.round(main_class.getDouble("temp") - 273) + "°C";
+                            _temp = Math.round(main_class.getDouble("temp") - 273) + "";
                             _feels_like = Math.round(main_class.getDouble("feels_like")-273) + "°C";
                             _temp_min = Math.round(main_class.getDouble("temp_min")-273) + "°C";
                             _temp_max = Math.round(main_class.getDouble("temp_max")-273) + "°C";
