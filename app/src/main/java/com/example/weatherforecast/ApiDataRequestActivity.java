@@ -146,7 +146,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _pressure = Math.round(main_class.getDouble("pressure")) + " Pa";
                             _humidity = Math.round(main_class.getDouble("humidity")) + " g/m\u00B3";
                             _speed = Math.rint(wind.getDouble("speed")) + " m/sec";
-                            _degree = Math.rint(wind.getDouble("deg")) + "°";
+                            _degree = Math.rint(wind.getDouble("deg")) +"°";
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
                             tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
