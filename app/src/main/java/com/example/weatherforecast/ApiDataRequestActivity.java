@@ -139,14 +139,14 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
 
-                            _temp = main_class.getDouble("temp") + "°C";
-                            _feels_like = main_class.getString("feels_like");
-                            _temp_min = main_class.getString("temp_min");
-                            _temp_max = main_class.getString("temp_max");
-                            _pressure = main_class.getString("pressure") + "";
-                            _humidity = main_class.getString("humidity");
-                            _speed = wind.getString("speed");
-                            _degree = wind.getString("deg");
+                            _temp = Math.round(main_class.getDouble("temp") - 273) + "°C";
+                            _feels_like = Math.round(main_class.getDouble("feels_like")-273) + "°C";
+                            _temp_min = Math.round(main_class.getDouble("temp_min")-273) + "°C";
+                            _temp_max = Math.round(main_class.getDouble("temp_max")-273) + "°C";
+                            _pressure = Math.round(main_class.getDouble("pressure")) + " Pa";
+                            _humidity = Math.round(main_class.getDouble("humidity")) + " g/m\u00B3";
+                            _speed = Math.rint(wind.getDouble("speed")) + " m/sec";
+                            _degree = Math.rint(wind.getDouble("deg")) + "°";
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
                             tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
