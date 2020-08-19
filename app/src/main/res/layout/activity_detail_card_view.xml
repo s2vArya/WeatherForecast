@@ -16,6 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/card_background_gradient"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -41,7 +42,11 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage" />
+                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"/>
 
             <TextView
                 android:id="@+id/cardWeatherStatusText"
@@ -54,7 +59,11 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/cardWeatherStatusTemperature"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage" />
+                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"/>
 
             <TextView
                 android:id="@+id/cardWeatherStatusTemperature"
@@ -68,7 +77,11 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/cardWeatherStatusText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardWeatherStatusText" />
+                app:layout_constraintTop_toTopOf="@+id/cardWeatherStatusText"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
