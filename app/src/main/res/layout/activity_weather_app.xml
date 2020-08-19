@@ -36,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="36"
-                android:layout_marginLeft="16dp"
                 android:textSize="150sp" />
 
             <TextView
@@ -44,11 +43,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="_mainState"
-                android:layout_marginLeft="16dp"
                 android:textSize="24sp" />
 
-            <include layout="@layout/activity_detail_card_view" />
-            <include layout="@layout/activity_detail_card_view" />
             <include layout="@layout/activity_detail_card_view" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
