@@ -149,24 +149,24 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _degree = Math.rint(wind.getDouble("deg")) +"°";
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
-                            tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
-                                            "Temperature: %s\nFeels like: %s\n" +
-                                            "Min Temperature: %s\nMax temperature: %s\n" +
-                                            "Pressure: %s\n" +
-                                            "Humidity: %s\nWind Speed: %s\nWind Angle: %s\nCountry: %s\nCity Name: %s",
-                                    _mainState,
-                                    _description,
-                                    _iconId,
-                                    _temp,
-                                    _feels_like,
-                                    _temp_min,
-                                    _temp_max,
-                                    _pressure,
-                                    _humidity,
-                                    _speed,
-                                    _degree,
-                                    _country,
-                                    _cityName));
+//                            tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
+//                                            "Temperature: %s\nFeels like: %s\n" +
+//                                            "Min Temperature: %s\nMax temperature: %s\n" +
+//                                            "Pressure: %s\n" +
+//                                            "Humidity: %s\nWind Speed: %s\nWind Angle: %s\nCountry: %s\nCity Name: %s",
+//                                    _mainState,
+//                                    _description,
+//                                    _iconId,
+//                                    _temp,
+//                                    _feels_like,
+//                                    _temp_min,
+//                                    _temp_max,
+//                                    _pressure,
+//                                    _humidity,
+//                                    _speed,
+//                                    _degree,
+//                                    _country,
+//                                    _cityName));
                             //Update UI
                         } catch (Exception e) {
                             Log.d("Connection Problem", e.toString());
