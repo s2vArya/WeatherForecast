@@ -20,5 +20,6 @@ public class detailCardViewActivity extends AppCompatActivity {
         mCardWeatherStatusText = findViewById(R.id.cardWeatherStatusText);
         mCardWeatherStatusTemperature = findViewById(R.id.cardWeatherStatusTemperature);
         mSeeMoreTxt = findViewById(R.id.seeMoreTxt);
+
     }
 }

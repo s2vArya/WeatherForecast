@@ -21,19 +21,74 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ApiDataRequestActivity extends AppCompatActivity {
-    private String _mainState;
-    private String _description;
-    private String _iconId;
-    private String _temp;
-    private String _feels_like;
-    private String _temp_min;
-    private String _temp_max;
-    private String _pressure;
-    private String _humidity;
-    private String _speed;
-    private String _degree;
-    private String _country;
-    private String _cityName;
+
+    /**Mintu Giri**/
+    private static String _mainState;
+    private static String _description;
+    private static String _iconId;
+    private static String _temp;
+    private static String _feels_like;
+    private static String _temp_min;
+    private static String _temp_max;
+    private static String _pressure;
+    private static String _humidity;
+    private static String _speed;
+    private static String _degree;
+    private static String _country;
+    private static String _cityName;
+    public  static  String getMainState()
+    {
+        return _mainState;
+    }
+    public  static  String getDescription()
+    {
+        return _description;
+    }
+    public  static  String getIconId()
+    {
+        return _iconId;
+    }
+    public  static  String getTemp()
+    {
+        return _temp;
+    }
+    public  static  String getFeelsLike()
+    {
+        return _feels_like;
+    }
+    public  static  String getTempMin()
+    {
+        return _temp_min;
+    }
+    public  static  String getTempMax()
+    {
+        return _temp_max;
+    }
+    public  static  String getPressure()
+    {
+        return _pressure;
+    }
+    public  static  String getHumidity()
+    {
+        return _humidity;
+    }
+    public  static  String getSpeed()
+    {
+        return _speed;
+    }
+    public  static  String getDegree()
+    {
+        return _degree;
+    }
+    public  static  String getCountry()
+    {
+        return _country;
+    }
+    public  static  String getCityName()
+    {
+        return _cityName;
+    }
+    /**Mintu Giri**/
 
     ProgressDialog progressDialog;
     TextView tb;
@@ -72,23 +127,26 @@ public class ApiDataRequestActivity extends AppCompatActivity {
 
                             JSONArray weather = response.getJSONArray("weather");
                             JSONObject main_class = response.getJSONObject("main");
+                            //tb.setText(response.toString());
                             JSONObject wind = response.getJSONObject("wind");
                             JSONObject sys = response.getJSONObject("sys");
-                            JSONObject main = weather.getJSONObject(0);
+
+                            JSONObject x = weather.getJSONObject(0);
                             JSONObject descIndex = weather.getJSONObject(0);
                             JSONObject icon = weather.getJSONObject(0);
+                            _mainState = x.getString("main");
 
-                            _mainState = main.getString("main");
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
-                            _temp = Math.round(main_class.getDouble("temp") - 273) + "°C";
-                            _feels_like = Math.round(main_class.getDouble("feels_like")-273) + "°C";
-                            _temp_min = Math.round(main_class.getDouble("temp_min")-273) + "°C";
-                            _temp_max = Math.round(main_class.getDouble("temp_max")-273) + "°C";
-                            _pressure = Math.round(main_class.getDouble("pressure")) + " Pa";
-                            _humidity = Math.round(main_class.getDouble("humidity")) + " g/m\u00B3";
-                            _speed = Math.rint(wind.getDouble("speed")) + " m/sec";
-                            _degree = Math.rint(wind.getDouble("deg")) + "°";
+
+                            _temp = main_class.getDouble("temp") + "°C";
+                            _feels_like = main_class.getString("feels_like");
+                            _temp_min = main_class.getString("temp_min");
+                            _temp_max = main_class.getString("temp_max");
+                            _pressure = main_class.getString("pressure") + "";
+                            _humidity = main_class.getString("humidity");
+                            _speed = wind.getString("speed");
+                            _degree = wind.getString("deg");
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
                             tb.setText(String.format("Weather State: %s\nWeather Description: %s\nIconId: %s\n" +
@@ -113,7 +171,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             Log.d("Connection Problem", e.toString());
                         }
-                        startActivity(new Intent(ApiDataRequestActivity.this, WeatherAppActivity.class));
+                        startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
                         progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
@@ -121,7 +179,7 @@ public class ApiDataRequestActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
                 Toast.makeText(ApiDataRequestActivity.this, "Connection Problem", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ApiDataRequestActivity.this, WeatherAppActivity.class));
+                startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
             }
         });
         // Add the request to the RequestQueue.
