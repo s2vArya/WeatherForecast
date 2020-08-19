@@ -10,7 +10,6 @@ public class detailCardViewActivity extends AppCompatActivity {
     private ImageView mCardWeatherStatusImage;
     private TextView mCardWeatherStatusText;
     private TextView mCardWeatherStatusTemperature;
-    private TextView mSeeMoreTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +18,6 @@ public class detailCardViewActivity extends AppCompatActivity {
         mCardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
         mCardWeatherStatusText = findViewById(R.id.cardWeatherStatusText);
         mCardWeatherStatusTemperature = findViewById(R.id.cardWeatherStatusTemperature);
-        mSeeMoreTxt = findViewById(R.id.seeMoreTxt);
 
     }
 }

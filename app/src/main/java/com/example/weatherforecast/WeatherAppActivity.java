@@ -33,11 +33,6 @@ public class WeatherAppActivity extends AppCompatActivity {
     private CardView cardView2;
     private TextView pressureTxt;
     private TextView humidityTxt;
-    private CardView cardView;
-    private TextView feelsLikeTxt;
-    private TextView minTempTxt;
-    private TextView maxTempTxt;
-    private CardView cardView3;
     private CardView todayDetailCardView;
     private TextView seeMoreTxt;
     private FloatingActionButton addHomeFloatingBtn;
@@ -60,13 +55,7 @@ public class WeatherAppActivity extends AppCompatActivity {
         cardView2 = (CardView) findViewById(R.id.cardView2);
         pressureTxt = (TextView) findViewById(R.id.pressureTxt);
         humidityTxt = (TextView) findViewById(R.id.humidityTxt);
-        cardView = (CardView) findViewById(R.id.cardView);
-        feelsLikeTxt = (TextView) findViewById(R.id.feelsLikeTxt);
-        minTempTxt = (TextView) findViewById(R.id.minTempTxt);
-        maxTempTxt = (TextView) findViewById(R.id.maxTempTxt);
-        cardView3 = (CardView) findViewById(R.id.cardView3);
         todayDetailCardView = (CardView) findViewById(R.id.todayDetailCardView);
-        seeMoreTxt = (TextView) findViewById(R.id.seeMoreTxt);
         addHomeFloatingBtn = (FloatingActionButton) findViewById(R.id.addHomeFloatingBtn);
 
         cardWeatherStatusText.setText(ApiDataRequestActivity.getMainState());
