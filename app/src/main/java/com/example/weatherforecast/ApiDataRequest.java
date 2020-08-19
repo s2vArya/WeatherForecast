@@ -1,14 +1,14 @@
 package com.example.weatherforecast;
 
-import android.app.ProgressDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ApiDataRequestActivity extends AppCompatActivity {
+public class ApiDataRequest extends AppCompatActivity {
 
     /**Mintu Giri**/
     private static String _mainState;
@@ -90,24 +90,16 @@ public class ApiDataRequestActivity extends AppCompatActivity {
     }
     /**Mintu Giri**/
 
-    ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_api_data_request);
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.show();
-        RequestByCityName("Dibiyapur");
     }
 
-    public void RequestByCityName(String cityName) {
+    public static void RequestByCityName(String cityName, final Context context) {
 
-        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + getString(R.string.openWeatherMapApi);
+        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName +"&APPID=0466c2473f115a4d226c8ce8b6280210";
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(context);
 
         // Request a string response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -115,10 +107,8 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             JSONArray weather = response.getJSONArray("weather");
                             JSONObject main_class = response.getJSONObject("main");
-                            //tb.setText(response.toString());
                             JSONObject wind = response.getJSONObject("wind");
                             JSONObject sys = response.getJSONObject("sys");
 
@@ -126,7 +116,6 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             JSONObject descIndex = weather.getJSONObject(0);
                             JSONObject icon = weather.getJSONObject(0);
                             _mainState = x.getString("main");
-
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
 
@@ -141,18 +130,16 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
                             //Update UI
+                            Log.e("Chal rha hai Bhai", _description);
                         } catch (Exception e) {
                             Log.d("Connection Problem", e.toString());
                         }
-                        startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
-                        progressDialog.dismiss();
+                        //Update UI
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                Toast.makeText(ApiDataRequestActivity.this, "Connection Problem", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ApiDataRequestActivity.this,WeatherAppActivity.class));
+                Toast.makeText(context, "Connection Problem", Toast.LENGTH_LONG).show();
             }
         });
         // Add the request to the RequestQueue.

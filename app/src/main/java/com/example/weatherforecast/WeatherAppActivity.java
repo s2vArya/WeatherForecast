@@ -10,20 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.MenuItemCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class WeatherAppActivity extends AppCompatActivity {
+public class WeatherAppActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar customToolbar;
     private FrameLayout toolbarLayout;
@@ -43,8 +43,6 @@ public class WeatherAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_app);
         SetUpToolBar();
-
-
         customToolbar = (Toolbar) findViewById(R.id.customToolbar);
         toolbarLayout = (FrameLayout) findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
@@ -57,22 +55,31 @@ public class WeatherAppActivity extends AppCompatActivity {
         pressureTxt = (TextView) findViewById(R.id.pressureTxt);
         humidityTxt = (TextView) findViewById(R.id.humidityTxt);
         todayDetailCardView = (CardView) findViewById(R.id.todayDetailCardView);
+        todayDetailCardView.setOnClickListener(this);
 
-        mMainTempTxt.setText(ApiDataRequestActivity.getTemp());
-        mMainStateTxt.setText(ApiDataRequestActivity.getMainState());
-        cardWeatherStatusText.setText(ApiDataRequestActivity.getDescription());
-        cardWeatherStatusTemperature.setText(ApiDataRequestActivity.getTemp()+"°C");
-        windSpeedTxt.setText("Wind Speed: "+ApiDataRequestActivity.getSpeed());
-        windAngleTxt.setText("Direction: "+ApiDataRequestActivity.getDegree());
-        pressureTxt.setText("Pressure: "+ApiDataRequestActivity.getPressure());
-        humidityTxt.setText("Humidity: "+ApiDataRequestActivity.getHumidity());
+        mMainTempTxt.setText(ApiDataRequest.getTemp());
+        mMainStateTxt.setText(ApiDataRequest.getMainState());
+        cardWeatherStatusText.setText(ApiDataRequest.getDescription());
+        cardWeatherStatusTemperature.setText(String.format("%s°C", ApiDataRequest.getTemp()));
+        windSpeedTxt.setText(String.format("Wind Speed: %s", ApiDataRequest.getSpeed()));
+        windAngleTxt.setText(String.format("Direction: %s", ApiDataRequest.getDegree()));
+        pressureTxt.setText(String.format("Pressure: %s", ApiDataRequest.getPressure()));
+        humidityTxt.setText(String.format("Humidity: %s", ApiDataRequest.getHumidity()));
 
-        todayDetailCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetFunction();
-            }
-        });
+        HandleIntent(getIntent());
+    }
+
+    private void SetUpToolBar() {
+        Toolbar toolbar = findViewById(R.id.customToolbar);
+        toolbar.setTitle(ApiDataRequest.getCityName());
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.todayDetailCardView) {
+            bottomSheetFunction();
+        }
     }
 
     private void bottomSheetFunction() {
@@ -106,31 +113,34 @@ public class WeatherAppActivity extends AppCompatActivity {
         final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
         final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
 
-        cityName.setText("City: " + ApiDataRequestActivity.getCityName());
-        mainState.setText("State: " + ApiDataRequestActivity.getMainState());
-        description.setText("Description: " + ApiDataRequestActivity.getDescription());
-        iconId.setText(ApiDataRequestActivity.getIconId());
-        temp.setText(ApiDataRequestActivity.getTemp()+"°C");
-        feelsLike.setText(ApiDataRequestActivity.getFeelsLike());
-        tempMin.setText(ApiDataRequestActivity.getTempMin());
-        tempMax.setText(ApiDataRequestActivity.getTempMax());
-        pressure.setText(ApiDataRequestActivity.getPressure());
-        humidity.setText(ApiDataRequestActivity.getHumidity());
-        speed.setText(ApiDataRequestActivity.getSpeed());
-        degree.setText(ApiDataRequestActivity.getDegree());
-        country.setText(ApiDataRequestActivity.getCountry());
-    }
-
-    private void SetUpToolBar() {
-        Toolbar toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle(ApiDataRequestActivity.getCityName());
-        setSupportActionBar(toolbar);
+        cityName.setText(String.format("City: %s", ApiDataRequest.getCityName()));
+        mainState.setText(String.format("State: %s", ApiDataRequest.getMainState()));
+        description.setText(String.format("Description: %s", ApiDataRequest.getDescription()));
+        iconId.setText(ApiDataRequest.getIconId());
+        temp.setText(String.format("%s°C", ApiDataRequest.getTemp()));
+        feelsLike.setText(ApiDataRequest.getFeelsLike());
+        tempMin.setText(ApiDataRequest.getTempMin());
+        tempMax.setText(ApiDataRequest.getTempMax());
+        pressure.setText(ApiDataRequest.getPressure());
+        humidity.setText(ApiDataRequest.getHumidity());
+        speed.setText(ApiDataRequest.getSpeed());
+        degree.setText(ApiDataRequest.getDegree());
+        country.setText(ApiDataRequest.getCountry());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search_location).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        //searchView.setIconifiedByDefault(false); this will expand search view forever
+        searchView.setSubmitButtonEnabled(true);//this brings submit button in view
+        searchView.setQueryRefinementEnabled(true);
+
+
+        return true;
     }
 
     @Override
@@ -160,5 +170,20 @@ public class WeatherAppActivity extends AppCompatActivity {
     }
 
     private void SearchLocationData() {
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        HandleIntent(intent);
+    }
+
+    // Get the intent, verify the action and get the query
+    private void HandleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String cityName = intent.getStringExtra(SearchManager.QUERY);
+            ApiDataRequest.RequestByCityName(cityName, getApplicationContext());
+        }
     }
 }

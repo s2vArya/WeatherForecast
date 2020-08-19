@@ -46,7 +46,7 @@
                 android:id="@+id/mainStateTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="_mainState"
+                android:text="mainState"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 

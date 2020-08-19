@@ -28,12 +28,13 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 TransitionFunction();
+                ApiDataRequest.RequestByCityName("Dibiyapur",getApplicationContext());
                 finish();
             }
         }, 3000);
     }
 
     private void TransitionFunction() {
-        startActivity(new Intent(this, ApiDataRequestActivity.class));
+        startActivity(new Intent(this, WeatherAppActivity.class));
     }
 }
