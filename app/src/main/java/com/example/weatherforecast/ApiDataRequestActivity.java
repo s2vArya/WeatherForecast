@@ -21,24 +21,77 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ApiDataRequestActivity extends AppCompatActivity {
-    private String _mainState;
-    private String _description;
-    private String _iconId;
-    private String _temp;
-    private String _feels_like;
-    private String _temp_min;
-    private String _temp_max;
-    private String _pressure;
-    private String _humidity;
-    private String _speed;
-    private String _degree;
-    private String _country;
-    private String _cityName;
+
+    /**Mintu Giri**/
+    private static String _mainState;
+    private static String _description;
+    private static String _iconId;
+    private static String _temp;
+    private static String _feels_like;
+    private static String _temp_min;
+    private static String _temp_max;
+    private static String _pressure;
+    private static String _humidity;
+    private static String _speed;
+    private static String _degree;
+    private static String _country;
+    private static String _cityName;
+    public  static  String getMainState()
+    {
+        return _mainState;
+    }
+    public  static  String getDescription()
+    {
+        return _description;
+    }
+    public  static  String getIconId()
+    {
+        return _iconId;
+    }
+    public  static  String getTemp()
+    {
+        return _temp;
+    }
+    public  static  String getFeelsLike()
+    {
+        return _feels_like;
+    }
+    public  static  String getTempMin()
+    {
+        return _temp_min;
+    }
+    public  static  String getTempMax()
+    {
+        return _temp_max;
+    }
+    public  static  String getPressure()
+    {
+        return _pressure;
+    }
+    public  static  String getHumidity()
+    {
+        return _humidity;
+    }
+    public  static  String getSpeed()
+    {
+        return _speed;
+    }
+    public  static  String getDegree()
+    {
+        return _degree;
+    }
+    public  static  String getCountry()
+    {
+        return _country;
+    }
+    public  static  String getCityName()
+    {
+        return _cityName;
+    }
+    /**Mintu Giri**/
 
     ProgressDialog progressDialog;
     TextView tb;
-
-    DataFlowConstructor dataFlowConstructor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +101,6 @@ public class ApiDataRequestActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.show();
-        dataFlowConstructor=new DataFlowConstructor();
         RequestByCityName("Dibiyapur");
         tb = findViewById(R.id.textView5);
         SetToolBar();
@@ -88,7 +140,6 @@ public class ApiDataRequestActivity extends AppCompatActivity {
                             _iconId = icon.getString("icon");
 
                             _temp = main_class.getDouble("temp") + "°C";
-                            dataFlowConstructor.set_mainState(_temp);
                             _feels_like = main_class.getString("feels_like");
                             _temp_min = main_class.getString("temp_min");
                             _temp_max = main_class.getString("temp_max");
