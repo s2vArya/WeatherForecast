@@ -2,10 +2,13 @@ package com.example.weatherforecast;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class WeatherAppActivity extends AppCompatActivity {
@@ -67,6 +71,59 @@ public class WeatherAppActivity extends AppCompatActivity {
 
         cardWeatherStatusText.setText(ApiDataRequestActivity.getMainState());
         cardWeatherStatusTemperature.setText(ApiDataRequestActivity.getTemp());
+
+        todayDetailCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetFunction();
+            }
+        });
+    }
+
+    private void bottomSheetFunction() {
+
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                WeatherAppActivity.this,R.style.BottomSheetDialogTheme);
+        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this)
+                .inflate(R.layout.bottom_sheet_layout,
+                        (LinearLayout)findViewById(R.id.bottom_sheet_container));
+        bottomSheetView.findViewById(R.id.bottom_sheet_container)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+
+        final TextView cityName = bottomSheetDialog.findViewById(R.id.bs_cityName);
+        final TextView mainState = bottomSheetDialog.findViewById(R.id.bs_mainState);
+        final TextView description = bottomSheetDialog.findViewById(R.id.bs_description);
+        final TextView iconId = bottomSheetDialog.findViewById(R.id.bs_iconId);
+        final TextView temp = bottomSheetDialog.findViewById(R.id.bs_temp);
+        final TextView feelsLike = bottomSheetDialog.findViewById(R.id.bs_feels_like);
+        final TextView tempMin = bottomSheetDialog.findViewById(R.id.bs_temp_min);
+        final TextView tempMax = bottomSheetDialog.findViewById(R.id.bs_temp_max);
+        final TextView pressure = bottomSheetDialog.findViewById(R.id.bs_pressure);
+        final TextView humidity = bottomSheetDialog.findViewById(R.id.bs_humidity);
+        final TextView speed = bottomSheetDialog.findViewById(R.id.bs_speed);
+        final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
+        final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
+
+        cityName.setText("City: " + ApiDataRequestActivity.getCityName());
+        mainState.setText("State: " + ApiDataRequestActivity.getMainState());
+        description.setText("Description: " + ApiDataRequestActivity.getDescription());
+        iconId.setText(ApiDataRequestActivity.getIconId());
+        temp.setText(ApiDataRequestActivity.getTemp());
+        feelsLike.setText(ApiDataRequestActivity.getFeelsLike());
+        tempMin.setText(ApiDataRequestActivity.getTempMin());
+        tempMax.setText(ApiDataRequestActivity.getTempMax());
+        pressure.setText(ApiDataRequestActivity.getPressure());
+        humidity.setText(ApiDataRequestActivity.getHumidity());
+        speed.setText(ApiDataRequestActivity.getSpeed());
+        degree.setText(ApiDataRequestActivity.getDegree());
+        country.setText(ApiDataRequestActivity.getCountry());
     }
 
     private void SetUpToolBar() {
