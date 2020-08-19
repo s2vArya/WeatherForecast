@@ -18,24 +18,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class WeatherAppActivity extends AppCompatActivity {
 
     private Toolbar customToolbar;
     private FrameLayout toolbarLayout;
     private ImageView cardWeatherStatusImage;
-    private TextView textView2;
     private TextView cardWeatherStatusText;
     private TextView cardWeatherStatusTemperature;
     private TextView windSpeedTxt;
     private TextView windAngleTxt;
-    private CardView cardView2;
     private TextView pressureTxt;
     private TextView humidityTxt;
     private CardView todayDetailCardView;
-    private TextView seeMoreTxt;
-    private FloatingActionButton addHomeFloatingBtn;
+    private TextView mMainTempTxt;
+    private TextView mMainStateTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +43,25 @@ public class WeatherAppActivity extends AppCompatActivity {
 
         customToolbar = (Toolbar) findViewById(R.id.customToolbar);
         toolbarLayout = (FrameLayout) findViewById(R.id.toolbarLayout);
+        mMainTempTxt = findViewById(R.id.mainTempTxt);
+        mMainStateTxt = findViewById(R.id.mainStateTxt);
         cardWeatherStatusImage = (ImageView) findViewById(R.id.cardWeatherStatusImage);
-        textView2 = (TextView) findViewById(R.id.textView2);
         cardWeatherStatusText = (TextView) findViewById(R.id.cardWeatherStatusText);
         cardWeatherStatusTemperature = (TextView) findViewById(R.id.cardWeatherStatusTemperature);
         windSpeedTxt = (TextView) findViewById(R.id.windSpeedTxt);
         windAngleTxt = (TextView) findViewById(R.id.windAngleTxt);
-        cardView2 = (CardView) findViewById(R.id.cardView2);
         pressureTxt = (TextView) findViewById(R.id.pressureTxt);
         humidityTxt = (TextView) findViewById(R.id.humidityTxt);
         todayDetailCardView = (CardView) findViewById(R.id.todayDetailCardView);
-        addHomeFloatingBtn = (FloatingActionButton) findViewById(R.id.addHomeFloatingBtn);
 
-        cardWeatherStatusText.setText(ApiDataRequestActivity.getMainState());
+        mMainTempTxt.setText(ApiDataRequestActivity.getTemp());
+        mMainStateTxt.setText(ApiDataRequestActivity.getMainState());
+        cardWeatherStatusText.setText(ApiDataRequestActivity.getDescription());
         cardWeatherStatusTemperature.setText(ApiDataRequestActivity.getTemp());
+        windSpeedTxt.setText("Wind Speed: "+ApiDataRequestActivity.getSpeed());
+        windAngleTxt.setText("Direction: "+ApiDataRequestActivity.getDegree());
+        pressureTxt.setText("Pressure: "+ApiDataRequestActivity.getPressure());
+        humidityTxt.setText("Humidity: "+ApiDataRequestActivity.getHumidity());
 
         todayDetailCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +74,10 @@ public class WeatherAppActivity extends AppCompatActivity {
     private void bottomSheetFunction() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                WeatherAppActivity.this,R.style.BottomSheetDialogTheme);
+                WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this)
                 .inflate(R.layout.bottom_sheet_layout,
-                        (LinearLayout)findViewById(R.id.bottom_sheet_container));
+                        (LinearLayout) findViewById(R.id.bottom_sheet_container));
         bottomSheetView.findViewById(R.id.bottom_sheet_container)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -117,6 +119,7 @@ public class WeatherAppActivity extends AppCompatActivity {
 
     private void SetUpToolBar() {
         Toolbar toolbar = findViewById(R.id.customToolbar);
+        toolbar.setTitle(ApiDataRequestActivity.getCityName());
         setSupportActionBar(toolbar);
     }
 
@@ -139,7 +142,7 @@ public class WeatherAppActivity extends AppCompatActivity {
                 AddOrRemoveCities();
                 break;
             case R.id.setting:
-                startActivity(new Intent(this, ApiDataRequestActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="LightColorSurface">#9903DAC5</color>
-    <color name="LightColorDarkBackGround">#008DC5</color>
+    <color name="LightColorDarkBackGround">#00C3CA</color>
     <color name="LightColorBackGround">#6CD9FB</color>
     <color name="LightColorAccent">#03DAC5</color>
     <color name="LightColorWhite">#FFFFFF</color>
