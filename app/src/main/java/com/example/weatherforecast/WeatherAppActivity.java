@@ -1,5 +1,7 @@
 package com.example.weatherforecast;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +11,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
@@ -77,7 +81,7 @@ public class WeatherAppActivity extends AppCompatActivity {
                 WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this)
                 .inflate(R.layout.bottom_sheet_layout,
-                        (LinearLayout) findViewById(R.id.bottom_sheet_container));
+                        (RelativeLayout) findViewById(R.id.bottom_sheet_container));
         bottomSheetView.findViewById(R.id.bottom_sheet_container)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override

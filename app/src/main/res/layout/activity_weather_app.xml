@@ -47,7 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="_mainState"
-                android:textSize="24sp" />
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <include layout="@layout/activity_detail_card_view" />
         </LinearLayout>
