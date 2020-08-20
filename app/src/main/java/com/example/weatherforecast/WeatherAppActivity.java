@@ -53,6 +53,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         setContentView(R.layout.activity_weather_app);
         SetUpToolBar();
         GetDataFromLocal();
+
         customToolbar = findViewById(R.id.customToolbar);
         toolbarLayout = findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
