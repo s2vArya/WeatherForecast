@@ -3,6 +3,7 @@ package com.example.weatherforecast;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,13 +17,14 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class WeatherAppActivity extends ApiDataRequest implements View.OnClickListener {
+public class WeatherAppActivity extends ApiDataRequest implements View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Toolbar customToolbar;
     private FrameLayout toolbarLayout;
@@ -36,6 +38,18 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private CardView todayDetailCardView;
     private TextView mMainTempTxt;
     private TextView mMainStateTxt;
+    private SearchView searchView;
+    private Toolbar toolbar;
+
+    private static String asd;
+
+    public static String getAsd() {
+        return asd;
+    }
+
+    public static void setAsd(String asd) {
+        WeatherAppActivity.asd = asd;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,104 +72,53 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         todayDetailCardView.setOnClickListener(this);
 
         HandleIntent(getIntent());
-        mMainStateTxt.setText(LocalDataActivity.getMainState());
-        mMainTempTxt.setText(LocalDataActivity.getTemp());
+
         cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
-        cardWeatherStatusImage.setImageResource(R.drawable.ic_home);
-        SetIcon(LocalDataActivity.getIconId());
-        cardWeatherStatusText.setText(LocalDataActivity.getDescription());
-        cardWeatherStatusTemperature.setText(String.format("%s°C", LocalDataActivity.getTemp()));
-        windSpeedTxt.setText(String.format("Wind Speed: %s", LocalDataActivity.getSpeed()));
-        windAngleTxt.setText(String.format("Direction: %s", LocalDataActivity.getDegree()));
-        pressureTxt.setText(String.format("Pressure: %s", LocalDataActivity.getPressure()));
-        humidityTxt.setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
+        try {
+            SetIcon();
+        }
+        catch (Exception e)
+        {
+            Log.d("icon", e.getMessage());
+        }
+
     }
 
     private void SetUpToolBar() {
-        Toolbar toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle(LocalDataActivity.getCityName());
+        toolbar = findViewById(R.id.customToolbar);
         setSupportActionBar(toolbar);
     }
 
-    private void SetIcon(String iconId) {
-        if (iconId != null) {
-            Log.e("Yaha tak Chal rha", LocalDataActivity.getIconId());
-            switch (LocalDataActivity.getIconId()) {
-                case "01d":
-                    Log.e("Yaha tak Chal rha", "1ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a01d);
-                    return;
-                case "02d":
-                    Log.e("Yaha tak Chal rha", "2ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a02d);
-                    return;
-                case "03d":
-                    Log.e("Yaha tak Chal rha", "3ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a03d);
-                    return;
-                case "04d":
-                    Log.e("Yaha tak Chal rha", "4ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a04d);
-                    return;
-                case "09d":
-                    Log.e("Yaha tak Chal rha", "5ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a09d);
-                    return;
-                case "10d":
-                    Log.e("Yaha tak Chal rha", "6ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a10d);
-                    return;
-                case "11d":
-                    Log.e("Yaha tak Chal rha", "7ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a11d);
-                    return;
-                case "13d":
-                    Log.e("Yaha tak Chal rha", "8ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a13d);
-                    return;
-                case "50d":
-                    Log.e("Yaha tak Chal rha", "9ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a50d);
-                    return;
-                case "01n":
-                    Log.e("Yaha tak Chal rha", "1nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a01d);
-                    return;
-                case "02n":
-                    Log.e("Yaha tak Chal rha", "2nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a02d);
-                    return;
-                case "03n":
-                    Log.e("Yaha tak Chal rha", "3nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a03d);
-                    return;
-                case "04n":
-                    Log.e("Yaha tak Chal rha", "4nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a04d);
-                    return;
-                case "09n":
-                    Log.e("Yaha tak Chal rha", "5nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a09d);
-                    return;
-                case "10n":
-                    Log.e("Yaha tak Chal rha", "6nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a10d);
-                    return;
-                case "11n":
-                    Log.e("Yaha tak Chal rha", "7nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a11d);
-                    return;
-                case "13n":
-                    Log.e("Yaha tak Chal rha", "8nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a13d);
-                    return;
-                case "50n":
-                    Log.e("Yaha tak Chal rha", "9nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a50d);
-                    return;
-            }
-        } else {
-            cardWeatherStatusImage.setImageResource(R.drawable.a01d);
+    private void SetIcon(){
+        switch (LocalDataActivity.getIconId()){
+            case "01d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a01d);
+                return;
+            case "02d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a02d);
+                return;
+            case "03d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a03d);
+                return;
+            case "04d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a04d);
+                return;
+            case "09d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a09d);
+                return;
+            case "10d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a10d);
+                return;
+            case "11d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a11d);
+                return;
+            case "13d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a13d);
+                return;
+             case "50d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a50d);
+                return;
+
         }
     }
 
@@ -166,18 +129,17 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         }
     }
 
-    //Todo --By Mintu
     private void bottomSheetFunction() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout,
-                (RelativeLayout) findViewById(R.id.bottom_sheet_container));
+                        (RelativeLayout) findViewById(R.id.bottom_sheet_container));
         bottomSheetView.findViewById(R.id.bottom_sheet_container).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetDialog.dismiss();
-            }
-        });
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
 
@@ -209,18 +171,18 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         degree.setText(LocalDataActivity.getDegree());
         country.setText(LocalDataActivity.getCountry());
     }
-    //TODO ---!>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search_location).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.search_location).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         //searchView.setIconifiedByDefault(false); this will expand search view forever
         searchView.setSubmitButtonEnabled(true);//this brings submit button in view
         searchView.setQueryRefinementEnabled(true);
+
         return true;
     }
 
@@ -235,24 +197,17 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private void HandleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String cityName = intent.getStringExtra(SearchManager.QUERY);
-            RequestByCityName(cityName, getApplicationContext());
-            ReloadActivity(ApiDataRequest.isTrastionWait());
+            RequestByCityName(cityName,getApplicationContext());
+            searchView.setQuery("", false);
+            searchView.clearFocus();
+            searchView.onActionViewCollapsed();
+//            Intent reloadIntent = new Intent(getApplicationContext(), WeatherAppActivity.class);
+//            reloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//                    Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(reloadIntent);
+//            finish();
         }
     }
-
-    //Todo --By Mintu
-    private void ReloadActivity(Boolean waitForRequestComplete) {
-        if (waitForRequestComplete) {
-            Intent reloadIntent = new Intent(getApplicationContext(), WeatherAppActivity.class);
-            reloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            GetDataFromLocal();
-            startActivity(reloadIntent);
-            ApiDataRequest.setTrastionWait(false);
-            finish();
-        }
-    }
-    //TODO ---!>
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -264,7 +219,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
                 AddOrRemoveCities();
                 break;
             case R.id.setting:
-                GotoSettings();
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -277,7 +232,64 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
-    private void GotoSettings() {
-        startActivity(new Intent(this, SettingsActivity.class));
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        GetDataFromLocal();
+        if (key.equals("Temp"))
+        {
+            String a = LocalDataActivity.getTemp();
+            mMainTempTxt.setText(a);
+            cardWeatherStatusTemperature.setText(String.format("%s°C",a));
+        }
+        if (key.equals("MainState"))
+        {
+            String b = LocalDataActivity.getMainState();
+            mMainStateTxt.setText(b);
+        }
+        if (key.equals("Description")){
+            cardWeatherStatusText.setText(LocalDataActivity.getDescription());
+        }
+        if (key.equals("Icon")){
+
+        }
+        if (key.equals("FeelsLike")){
+
+        }
+        if (key.equals("MinTemp")){
+
+        }
+        if (key.equals("MaxTemp")){
+
+        }
+        if (key.equals("Pressure")){
+            pressureTxt.setText(String.format("Pressure: %s",LocalDataActivity.getPressure()));
+        }
+        if (key.equals("Humidity")){
+            humidityTxt.setText(String.format("Humidity: %s",LocalDataActivity.getHumidity()));
+        }
+        if (key.equals("WindSpeed")){
+            windSpeedTxt.setText(String.format("Wind Speed: %s",LocalDataActivity.getSpeed()));
+        }
+        if (key.equals("WindAngle")){
+            windAngleTxt.setText(String.format("Direction: %s",LocalDataActivity.getDegree()));
+        }
+        if (key.equals("Country")){
+
+        }
+        if (key.equals("CityName")){
+            toolbar.setTitle(LocalDataActivity.getCityName());
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalDataActivity.registerPref(this,this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalDataActivity.unregisterPref(this, this);
     }
 }
