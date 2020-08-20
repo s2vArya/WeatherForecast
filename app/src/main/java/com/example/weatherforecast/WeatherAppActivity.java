@@ -58,7 +58,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         toolbarLayout = findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
         mMainStateTxt = findViewById(R.id.mainStateTxt);
-        cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
         cardWeatherStatusText = findViewById(R.id.cardWeatherStatusText);
         cardWeatherStatusTemperature = findViewById(R.id.cardWeatherStatusTemperature);
         windSpeedTxt = findViewById(R.id.windSpeedTxt);
@@ -72,6 +71,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
 
         mMainStateTxt.setText(LocalDataActivity.getMainState());
         mMainTempTxt.setText(LocalDataActivity.getTemp());
+        cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
+        SetIcon();
         cardWeatherStatusText.setText(LocalDataActivity.getDescription());
         cardWeatherStatusTemperature.setText(String.format("%s°C",LocalDataActivity.getTemp()));
         windSpeedTxt.setText(String.format("Wind Speed: %s",LocalDataActivity.getSpeed()));
@@ -84,6 +85,39 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         Toolbar toolbar = findViewById(R.id.customToolbar);
         toolbar.setTitle(LocalDataActivity.getCityName());
         setSupportActionBar(toolbar);
+    }
+
+    private void SetIcon(){
+        switch (LocalDataActivity.getIconId()){
+            case "01d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a01d);
+                return;
+            case "02d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a02d);
+                return;
+            case "03d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a03d);
+                return;
+            case "04d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a04d);
+                return;
+            case "09d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a09d);
+                return;
+            case "10d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a10d);
+                return;
+            case "11d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a11d);
+                return;
+            case "13d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a13d);
+                return;
+             case "50d":
+                cardWeatherStatusImage.setImageResource(R.drawable.a50d);
+                return;
+
+        }
     }
 
     @Override
