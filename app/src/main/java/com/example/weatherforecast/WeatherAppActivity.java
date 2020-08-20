@@ -162,6 +162,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String cityName = intent.getStringExtra(SearchManager.QUERY);
             RequestByCityName(cityName,getApplicationContext());
+            startActivity(new Intent(getApplicationContext(),WeatherAppActivity.class));
         }
     }
 
