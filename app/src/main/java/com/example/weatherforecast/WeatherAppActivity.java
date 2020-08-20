@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -72,7 +73,13 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         mMainStateTxt.setText(LocalDataActivity.getMainState());
         mMainTempTxt.setText(LocalDataActivity.getTemp());
         cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
-        SetIcon();
+        try {
+            SetIcon();
+        }
+        catch (Exception e)
+        {
+            Log.d("icon", e.getMessage());
+        }
         cardWeatherStatusText.setText(LocalDataActivity.getDescription());
         cardWeatherStatusTemperature.setText(String.format("%s°C",LocalDataActivity.getTemp()));
         windSpeedTxt.setText(String.format("Wind Speed: %s",LocalDataActivity.getSpeed()));
@@ -197,7 +204,11 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String cityName = intent.getStringExtra(SearchManager.QUERY);
             RequestByCityName(cityName,getApplicationContext());
-            startActivity(new Intent(getApplicationContext(),WeatherAppActivity.class));
+            Intent reloadIntent = new Intent(getApplicationContext(), WeatherAppActivity.class);
+            reloadIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(reloadIntent);
+            finish();
         }
     }
 
