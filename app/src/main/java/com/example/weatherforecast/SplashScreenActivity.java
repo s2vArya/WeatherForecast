@@ -1,5 +1,6 @@
 package com.example.weatherforecast;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +12,6 @@ public class SplashScreenActivity extends ApiDataRequest {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         SplashScreenHandling();
     }
 
@@ -25,7 +25,6 @@ public class SplashScreenActivity extends ApiDataRequest {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                TransitionFunction();
                 GetDataFromLocal();
                 checkSharedPref();
                 finish();
@@ -38,9 +37,11 @@ public class SplashScreenActivity extends ApiDataRequest {
         if (LocalDataActivity.getCityName() == null)
         {
             RequestByCityName("delhi", getApplicationContext());
+            TransitionFunction();
         }
         else {
             RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
+            TransitionFunction();
         }
     }
 

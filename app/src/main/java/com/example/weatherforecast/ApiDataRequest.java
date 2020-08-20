@@ -2,6 +2,7 @@ package com.example.weatherforecast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,60 +37,69 @@ public class ApiDataRequest extends LocalDataActivity{
     private static String _degree;
     private static String _country;
     private static String _cityName;
-    public  static  String getMainState()
-    {
-        return _mainState;
-    }
-    public  static  String getDescription()
-    {
-        return _description;
-    }
-    public  static  String getIconId()
-    {
-        return _iconId;
-    }
-    public  static  String getTemp()
-    {
-        return _temp;
-    }
-    public  static  String getFeelsLike()
-    {
-        return _feels_like;
-    }
-    public  static  String getTempMin()
-    {
-        return _temp_min;
-    }
-    public  static  String getTempMax()
-    {
-        return _temp_max;
-    }
-    public  static  String getPressure()
-    {
-        return _pressure;
-    }
-    public  static  String getHumidity()
-    {
-        return _humidity;
-    }
-    public  static  String getSpeed()
-    {
-        return _speed;
-    }
-    public  static  String getDegree()
-    {
-        return _degree;
-    }
-    public  static  String getCountry()
-    {
-        return _country;
+//    public  static  String getMainState()
+//    {
+//        return _mainState;
+//    }
+//    public  static  String getDescription()
+//    {
+//        return _description;
+//    }
+//    public  static  String getIconId()
+//    {
+//        return _iconId;
+//    }
+//    public  static  String getTemp()
+//    {
+//        return _temp;
+//    }
+//    public  static  String getFeelsLike()
+//    {
+//        return _feels_like;
+//    }
+//    public  static  String getTempMin()
+//    {
+//        return _temp_min;
+//    }
+//    public  static  String getTempMax()
+//    {
+//        return _temp_max;
+//    }
+//    public  static  String getPressure()
+//    {
+//        return _pressure;
+//    }
+//    public  static  String getHumidity()
+//    {
+//        return _humidity;
+//    }
+//    public  static  String getSpeed()
+//    {
+//        return _speed;
+//    }
+//    public  static  String getDegree()
+//    {
+//        return _degree;
+//    }
+//    public  static  String getCountry()
+//    {
+//        return _country;
+//    }
+//
+//    public  static  String getCityName()
+//    {
+//        return _cityName;
+//    }
+    /**Mintu Giri**/
+
+    private static boolean trastionWait=false;
+    public static boolean isTrastionWait() {
+        return trastionWait;
     }
 
-    public  static  String getCityName()
-    {
-        return _cityName;
+    public static void setTrastionWait(boolean trastionWait) {
+        ApiDataRequest.trastionWait = trastionWait;
     }
-    /**Mintu Giri**/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +107,8 @@ public class ApiDataRequest extends LocalDataActivity{
     }
 
     public void RequestByCityName(String cityName, final Context context) {
+
+
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName +"&APPID=0466c2473f115a4d226c8ce8b6280210";
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -130,15 +142,18 @@ public class ApiDataRequest extends LocalDataActivity{
                             RemoveLocalData();
                             SaveDataToLocal(_mainState,_description,_iconId,_temp,_feels_like,_temp_min,_temp_max,_pressure,_humidity,_speed,_degree,_country,_cityName);
                             //Update UI
+                            setTrastionWait(true);
                             Log.e("Chal rha hai Bhai", _description);
                         } catch (Exception e) {
                             Log.d("Connection Problem", e.toString());
                         }
+//                        progressDialog.dismiss();
                         //Update UI
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+//                progressDialog.dismiss();
                 Toast.makeText(context, "Connection Problem", Toast.LENGTH_LONG).show();
             }
         });
