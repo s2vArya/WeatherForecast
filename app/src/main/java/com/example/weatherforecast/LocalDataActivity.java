@@ -222,14 +222,12 @@ public abstract class LocalDataActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public static void registerPref(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener)
-    {
+    public static void registerPref(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
         SharedPreferences pref = context.getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         pref.registerOnSharedPreferenceChangeListener(listener);
     }
 
-    public static void unregisterPref(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener)
-    {
+    public static void unregisterPref(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
         SharedPreferences pref = context.getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         pref.unregisterOnSharedPreferenceChangeListener(listener);
     }

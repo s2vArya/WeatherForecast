@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,16 +39,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private SearchView searchView;
     private Toolbar toolbar;
 
-    private static String asd;
-
-    public static String getAsd() {
-        return asd;
-    }
-
-    public static void setAsd(String asd) {
-        WeatherAppActivity.asd = asd;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,11 +58,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         humidityTxt = findViewById(R.id.humidityTxt);
         todayDetailCardView = findViewById(R.id.todayDetailCardView);
         todayDetailCardView.setOnClickListener(this);
-
         HandleIntent(getIntent());
-
         cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
-        SetIcon();
     }
 
     private void SetUpToolBar() {
@@ -83,78 +69,41 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
 
     private void SetIcon() {
         if (LocalDataActivity.getIconId() != null) {
-            Log.e("Yaha tak Chal rha", LocalDataActivity.getIconId());
             switch (LocalDataActivity.getIconId()) {
                 case "01d":
-                    Log.e("Yaha tak Chal rha", "1ab kya kre");
+                case "01n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a01d);
                     return;
                 case "02d":
-                    Log.e("Yaha tak Chal rha", "2ab kya kre");
+                case "02n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a02d);
                     return;
                 case "03d":
-                    Log.e("Yaha tak Chal rha", "3ab kya kre");
+                case "03n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a03d);
                     return;
                 case "04d":
-                    Log.e("Yaha tak Chal rha", "4ab kya kre");
+                case "04n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a04d);
                     return;
                 case "09d":
-                    Log.e("Yaha tak Chal rha", "5ab kya kre");
+                case "09n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a09d);
                     return;
                 case "10d":
-                    Log.e("Yaha tak Chal rha", "6ab kya kre");
+                case "10n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a10d);
                     return;
                 case "11d":
-                    Log.e("Yaha tak Chal rha", "7ab kya kre");
+                case "11n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a11d);
                     return;
                 case "13d":
-                    Log.e("Yaha tak Chal rha", "8ab kya kre");
+                case "13n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a13d);
                     return;
                 case "50d":
-                    Log.e("Yaha tak Chal rha", "9ab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a50d);
-                    return;
-                case "01n":
-                    Log.e("Yaha tak Chal rha", "1nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a01d);
-                    return;
-                case "02n":
-                    Log.e("Yaha tak Chal rha", "2nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a02d);
-                    return;
-                case "03n":
-                    Log.e("Yaha tak Chal rha", "3nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a03d);
-                    return;
-                case "04n":
-                    Log.e("Yaha tak Chal rha", "4nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a04d);
-                    return;
-                case "09n":
-                    Log.e("Yaha tak Chal rha", "5nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a09d);
-                    return;
-                case "10n":
-                    Log.e("Yaha tak Chal rha", "6nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a10d);
-                    return;
-                case "11n":
-                    Log.e("Yaha tak Chal rha", "7nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a11d);
-                    return;
-                case "13n":
-                    Log.e("Yaha tak Chal rha", "8nab kya kre");
-                    cardWeatherStatusImage.setImageResource(R.drawable.a13d);
-                    return;
                 case "50n":
-                    Log.e("Yaha tak Chal rha", "9nab kya kre");
                     cardWeatherStatusImage.setImageResource(R.drawable.a50d);
                     return;
             }
@@ -220,8 +169,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.search_location).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        //searchView.setIconifiedByDefault(false); this will expand search view forever
-        //searchView.setSubmitButtonEnabled(true);//this brings submit button in view
         searchView.setQueryRefinementEnabled(true);
 
         return true;
@@ -284,7 +231,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
             cardWeatherStatusText.setText(LocalDataActivity.getDescription());
         }
         if (key.equals("Icon")) {
-
+            SetIcon();
         }
         if (key.equals("FeelsLike")) {
 
