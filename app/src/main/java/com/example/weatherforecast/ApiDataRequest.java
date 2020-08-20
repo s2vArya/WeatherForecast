@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ApiDataRequest extends AppCompatActivity {
+public class ApiDataRequest extends LocalDataActivity{
 
     /**Mintu Giri**/
     private static String _mainState;
@@ -84,6 +84,7 @@ public class ApiDataRequest extends AppCompatActivity {
     {
         return _country;
     }
+
     public  static  String getCityName()
     {
         return _cityName;
@@ -95,12 +96,10 @@ public class ApiDataRequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    public static void RequestByCityName(String cityName, final Context context) {
-
+    public void RequestByCityName(String cityName, final Context context) {
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName +"&APPID=0466c2473f115a4d226c8ce8b6280210";
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
-
         // Request a string response from the provided URL.
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -118,7 +117,6 @@ public class ApiDataRequest extends AppCompatActivity {
                             _mainState = x.getString("main");
                             _description = descIndex.getString("description");
                             _iconId = icon.getString("icon");
-
                             _temp = Math.round(main_class.getDouble("temp") - 273) + "";
                             _feels_like = Math.round(main_class.getDouble("feels_like")-273) + "°C";
                             _temp_min = Math.round(main_class.getDouble("temp_min")-273) + "°C";
@@ -129,6 +127,8 @@ public class ApiDataRequest extends AppCompatActivity {
                             _degree = Math.rint(wind.getDouble("deg")) +"°";
                             _country = sys.getString("country");
                             _cityName = response.getString("name");
+                            RemoveLocalData();
+                            SaveDataToLocal(_mainState,_description,_iconId,_temp,_feels_like,_temp_min,_temp_max,_pressure,_humidity,_speed,_degree,_country,_cityName);
                             //Update UI
                             Log.e("Chal rha hai Bhai", _description);
                         } catch (Exception e) {

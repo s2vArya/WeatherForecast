@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends ApiDataRequest {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 TransitionFunction();
-                ApiDataRequest.RequestByCityName("Dibiyapur",getApplicationContext());
+                GetDataFromLocal();
+                RequestByCityName(LocalDataActivity.getCityName(),getApplicationContext());
                 finish();
             }
         }, 3000);

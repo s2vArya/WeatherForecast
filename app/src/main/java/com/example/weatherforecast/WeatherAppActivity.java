@@ -19,11 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.view.MenuItemCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class WeatherAppActivity extends AppCompatActivity implements View.OnClickListener {
+public class WeatherAppActivity extends ApiDataRequest implements View.OnClickListener {
 
     private Toolbar customToolbar;
     private FrameLayout toolbarLayout;
@@ -38,35 +37,46 @@ public class WeatherAppActivity extends AppCompatActivity implements View.OnClic
     private TextView mMainTempTxt;
     private TextView mMainStateTxt;
 
+    private static String asd;
+
+    public static String getAsd() {
+        return asd;
+    }
+
+    public static void setAsd(String asd) {
+        WeatherAppActivity.asd = asd;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_app);
         SetUpToolBar();
-        customToolbar = (Toolbar) findViewById(R.id.customToolbar);
-        toolbarLayout = (FrameLayout) findViewById(R.id.toolbarLayout);
+        GetDataFromLocal();
+        customToolbar = findViewById(R.id.customToolbar);
+        toolbarLayout = findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
         mMainStateTxt = findViewById(R.id.mainStateTxt);
-        cardWeatherStatusImage = (ImageView) findViewById(R.id.cardWeatherStatusImage);
-        cardWeatherStatusText = (TextView) findViewById(R.id.cardWeatherStatusText);
-        cardWeatherStatusTemperature = (TextView) findViewById(R.id.cardWeatherStatusTemperature);
-        windSpeedTxt = (TextView) findViewById(R.id.windSpeedTxt);
-        windAngleTxt = (TextView) findViewById(R.id.windAngleTxt);
-        pressureTxt = (TextView) findViewById(R.id.pressureTxt);
-        humidityTxt = (TextView) findViewById(R.id.humidityTxt);
-        todayDetailCardView = (CardView) findViewById(R.id.todayDetailCardView);
+        cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
+        cardWeatherStatusText = findViewById(R.id.cardWeatherStatusText);
+        cardWeatherStatusTemperature = findViewById(R.id.cardWeatherStatusTemperature);
+        windSpeedTxt = findViewById(R.id.windSpeedTxt);
+        windAngleTxt = findViewById(R.id.windAngleTxt);
+        pressureTxt = findViewById(R.id.pressureTxt);
+        humidityTxt = findViewById(R.id.humidityTxt);
+        todayDetailCardView = findViewById(R.id.todayDetailCardView);
         todayDetailCardView.setOnClickListener(this);
 
-        mMainTempTxt.setText(ApiDataRequest.getTemp());
-        mMainStateTxt.setText(ApiDataRequest.getMainState());
-        cardWeatherStatusText.setText(ApiDataRequest.getDescription());
-        cardWeatherStatusTemperature.setText(String.format("%s°C", ApiDataRequest.getTemp()));
-        windSpeedTxt.setText(String.format("Wind Speed: %s", ApiDataRequest.getSpeed()));
-        windAngleTxt.setText(String.format("Direction: %s", ApiDataRequest.getDegree()));
-        pressureTxt.setText(String.format("Pressure: %s", ApiDataRequest.getPressure()));
-        humidityTxt.setText(String.format("Humidity: %s", ApiDataRequest.getHumidity()));
-
         HandleIntent(getIntent());
+
+        mMainStateTxt.setText(LocalDataActivity.getMainState());
+        mMainTempTxt.setText(LocalDataActivity.getTemp());
+        cardWeatherStatusText.setText(LocalDataActivity.getDescription());
+        cardWeatherStatusTemperature.setText(String.format("%s°C",LocalDataActivity.getTemp()));
+        windSpeedTxt.setText(String.format("Wind Speed: %s",LocalDataActivity.getSpeed()));
+        windAngleTxt.setText(String.format("Direction: %s",LocalDataActivity.getDegree()));
+        pressureTxt.setText(String.format("Pressure: %s",LocalDataActivity.getPressure()));
+        humidityTxt.setText(String.format("Humidity: %s",LocalDataActivity.getHumidity()));
     }
 
     private void SetUpToolBar() {
@@ -84,13 +94,10 @@ public class WeatherAppActivity extends AppCompatActivity implements View.OnClic
 
     private void bottomSheetFunction() {
 
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
-        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this)
-                .inflate(R.layout.bottom_sheet_layout,
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
+        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout,
                         (RelativeLayout) findViewById(R.id.bottom_sheet_container));
-        bottomSheetView.findViewById(R.id.bottom_sheet_container)
-                .setOnClickListener(new View.OnClickListener() {
+        bottomSheetView.findViewById(R.id.bottom_sheet_container).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         bottomSheetDialog.dismiss();
@@ -144,11 +151,23 @@ public class WeatherAppActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        HandleIntent(intent);
+    }
+
+    // Get the intent, verify the action and get the query
+    private void HandleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String cityName = intent.getStringExtra(SearchManager.QUERY);
+            RequestByCityName(cityName,getApplicationContext());
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search_location:
-                SearchLocationData();
-                break;
             case R.id.select_theme:
                 ToggleTheme();
                 break;
@@ -167,23 +186,5 @@ public class WeatherAppActivity extends AppCompatActivity implements View.OnClic
 
     private void ToggleTheme() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-    }
-
-    private void SearchLocationData() {
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        HandleIntent(intent);
-    }
-
-    // Get the intent, verify the action and get the query
-    private void HandleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String cityName = intent.getStringExtra(SearchManager.QUERY);
-            ApiDataRequest.RequestByCityName(cityName, getApplicationContext());
-        }
     }
 }

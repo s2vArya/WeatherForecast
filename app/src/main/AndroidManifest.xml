@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LightTheme">
-
+        <activity android:name=".LocalDataActivity"></activity>
         <activity android:name=".ApiDataRequest">
 
             <!-- enable the search dialog to send searches to SearchableActivity -->
