@@ -171,7 +171,7 @@ public abstract class LocalDataActivity extends AppCompatActivity {
         editor.apply();// it's called confirmation... and save the data...it must used when edit data
     }
 
-    public void GetDataFromLocal(){
+    public void GetDataFromLocal() {
         SharedPreferences pref = getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         String mainState = pref.getString("MainState", null);
@@ -203,7 +203,7 @@ public abstract class LocalDataActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public void RemoveLocalData(){
+    public void RemoveLocalData() {
         SharedPreferences pref = getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.remove("MainState");

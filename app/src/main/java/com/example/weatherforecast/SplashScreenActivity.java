@@ -1,7 +1,5 @@
 package com.example.weatherforecast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,7 +27,7 @@ public class SplashScreenActivity extends ApiDataRequest {
             public void run() {
                 TransitionFunction();
                 GetDataFromLocal();
-                RequestByCityName(LocalDataActivity.getCityName(),getApplicationContext());
+                RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
                 finish();
             }
         }, 3000);

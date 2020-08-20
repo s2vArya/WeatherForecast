@@ -81,7 +81,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
 
     private void SetUpToolBar() {
         Toolbar toolbar = findViewById(R.id.customToolbar);
-        toolbar.setTitle(ApiDataRequest.getCityName());
+        toolbar.setTitle(LocalDataActivity.getCityName());
         setSupportActionBar(toolbar);
     }
 
@@ -120,19 +120,19 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
         final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
 
-        cityName.setText(String.format("City: %s", ApiDataRequest.getCityName()));
-        mainState.setText(String.format("State: %s", ApiDataRequest.getMainState()));
-        description.setText(String.format("Description: %s", ApiDataRequest.getDescription()));
-        iconId.setText(ApiDataRequest.getIconId());
-        temp.setText(String.format("%s°C", ApiDataRequest.getTemp()));
-        feelsLike.setText(ApiDataRequest.getFeelsLike());
-        tempMin.setText(ApiDataRequest.getTempMin());
-        tempMax.setText(ApiDataRequest.getTempMax());
-        pressure.setText(ApiDataRequest.getPressure());
-        humidity.setText(ApiDataRequest.getHumidity());
-        speed.setText(ApiDataRequest.getSpeed());
-        degree.setText(ApiDataRequest.getDegree());
-        country.setText(ApiDataRequest.getCountry());
+        cityName.setText(String.format("City: %s", LocalDataActivity.getCityName()));
+        mainState.setText(String.format("State: %s", LocalDataActivity.getMainState()));
+        description.setText(String.format("Description: %s", LocalDataActivity.getDescription()));
+        iconId.setText(LocalDataActivity.getIconId());
+        temp.setText(String.format("%s°C", LocalDataActivity.getTemp()));
+        feelsLike.setText(LocalDataActivity.getFeelsLike());
+        tempMin.setText(LocalDataActivity.getTempMin());
+        tempMax.setText(LocalDataActivity.getTempMax());
+        pressure.setText(LocalDataActivity.getPressure());
+        humidity.setText(LocalDataActivity.getHumidity());
+        speed.setText(LocalDataActivity.getSpeed());
+        degree.setText(LocalDataActivity.getDegree());
+        country.setText(LocalDataActivity.getCountry());
     }
 
     @Override
