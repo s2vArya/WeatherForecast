@@ -27,10 +27,21 @@ public class SplashScreenActivity extends ApiDataRequest {
             public void run() {
                 TransitionFunction();
                 GetDataFromLocal();
-                RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
+                checkSharedPref();
                 finish();
             }
         }, 3000);
+    }
+
+    private void checkSharedPref()
+    {
+        if (LocalDataActivity.getCityName() == null)
+        {
+            RequestByCityName("delhi", getApplicationContext());
+        }
+        else {
+            RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
+        }
     }
 
     private void TransitionFunction() {
