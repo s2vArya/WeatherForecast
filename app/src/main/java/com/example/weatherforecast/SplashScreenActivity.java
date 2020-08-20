@@ -18,10 +18,6 @@ public class SplashScreenActivity extends ApiDataRequest {
     /*Splash Screen Function*/
     private void SplashScreenHandling() {
 
-        View v = getWindow().getDecorView();  //Hiding Status bar
-        int ui = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        v.setSystemUiVisibility(ui);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
