@@ -24,8 +24,10 @@
         <activity android:name=".LocalDataActivity" />
         <activity android:name=".ApiDataRequest" />
         <activity android:name=".detailCardViewActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/LightTheme.NoActionBar"/>
+        <activity android:name=".SplashScreenActivity"
+            android:theme="@style/LightTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +36,7 @@
         </activity>
         <activity
             android:name=".WeatherAppActivity"
+            android:theme="@style/LightTheme.NoActionBar"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -26,7 +26,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
-                android:src="@drawable/ic_home"
+                android:src="@drawable/a01d"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,15 +38,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"
                 android:text="@string/today"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage"
-                android:shadowColor="#000000"
-                android:shadowDx="5"
-                android:shadowDy="5"
-                android:shadowRadius="5"/>
+                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage" />
 
             <TextView
                 android:id="@+id/cardWeatherStatusText"
@@ -54,16 +54,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"
                 android:text="@string/heavy_rain"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/cardWeatherStatusTemperature"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage"
-                android:shadowColor="#000000"
-                android:shadowDx="5"
-                android:shadowDy="5"
-                android:shadowRadius="5"/>
+                app:layout_constraintTop_toBottomOf="@+id/cardWeatherStatusImage" />
 
             <TextView
                 android:id="@+id/cardWeatherStatusTemperature"
@@ -71,17 +71,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"
                 android:text="30/26"
                 android:textAlignment="textStart"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/cardWeatherStatusText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardWeatherStatusText"
-                android:shadowColor="#000000"
-                android:shadowDx="5"
-                android:shadowDy="5"
-                android:shadowRadius="5"/>
+                app:layout_constraintTop_toTopOf="@+id/cardWeatherStatusText" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"

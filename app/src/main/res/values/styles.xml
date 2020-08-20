@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Light application theme. -->
-    <style name="LightTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="LightTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/LightColorSurface</item>
         <item name="colorPrimaryDark">@color/LightColorDarkBackGround</item>
@@ -60,6 +60,11 @@
 
     <style name="wf.Backdrop" parent="">
         <item name="android:background">?attr/colorAccent</item>
+    </style>
+
+    <style name="LightTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 
