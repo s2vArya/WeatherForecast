@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
     android:orientation="vertical"
     tools:context=".detailCardViewActivity">
     <androidx.cardview.widget.CardView
@@ -33,12 +34,12 @@
 
             <TextView
                 android:id="@+id/textView2"
-                style="@style/wf.TextInputLayout.HintText"
+                android:textColor="@color/ColorOnDarkBackGround"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:shadowColor="#000000"
+                android:shadowColor="@color/ColorOnBackGround"
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
@@ -50,16 +51,16 @@
 
             <TextView
                 android:id="@+id/cardWeatherStatusText"
-                style="@style/wf.TextInputLayout.HintText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:shadowColor="#000000"
+                android:shadowColor="@color/ColorOnBackGround"
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
                 android:text="@string/heavy_rain"
                 android:textSize="20sp"
+                android:textColor="@color/ColorOnDarkBackGround"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/cardWeatherStatusTemperature"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -67,15 +68,16 @@
 
             <TextView
                 android:id="@+id/cardWeatherStatusTemperature"
-                style="@style/wf.TextInputLayout.HintText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:shadowColor="#000000"
+                android:paddingRight="4dp"
+                android:shadowColor="@color/ColorOnBackGround"
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
                 android:text="30/26"
+                android:textColor="@color/ColorOnDarkBackGround"
                 android:textAlignment="textStart"
                 android:textSize="20sp"
                 android:textStyle="bold"

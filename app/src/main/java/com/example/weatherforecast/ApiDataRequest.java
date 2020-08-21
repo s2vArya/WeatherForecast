@@ -33,6 +33,9 @@ public class ApiDataRequest extends LocalDataActivity {
     private static String _degree;
     private static String _country;
     private static String _cityName;
+    /**
+     * Mintu Giri
+     **/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

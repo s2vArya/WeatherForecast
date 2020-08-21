@@ -50,6 +50,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         toolbarLayout = findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
         mMainStateTxt = findViewById(R.id.mainStateTxt);
+        cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
         cardWeatherStatusText = findViewById(R.id.cardWeatherStatusText);
         cardWeatherStatusTemperature = findViewById(R.id.cardWeatherStatusTemperature);
         windSpeedTxt = findViewById(R.id.windSpeedTxt);
@@ -58,8 +59,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         humidityTxt = findViewById(R.id.humidityTxt);
         todayDetailCardView = findViewById(R.id.todayDetailCardView);
         todayDetailCardView.setOnClickListener(this);
+
         HandleIntent(getIntent());
-        cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
     }
 
     private void SetUpToolBar() {
@@ -67,8 +68,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         setSupportActionBar(toolbar);
     }
 
-    private void SetIcon() {
-        if (LocalDataActivity.getIconId() != null) {
+    private void SetIcon(String iconId) {
+        if (iconId != null) {
             switch (LocalDataActivity.getIconId()) {
                 case "01d":
                 case "01n":
@@ -193,29 +194,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.select_theme:
-                ToggleTheme();
-                break;
-            case R.id.manage_cities:
-                AddOrRemoveCities();
-                break;
-            case R.id.setting:
-                startActivity(new Intent(this, SettingsActivity.class));
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void AddOrRemoveCities() {
-    }
-
-    private void ToggleTheme() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-    }
-
-    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         GetDataFromLocal();
         if (key.equals("Temp")) {
@@ -231,7 +209,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
             cardWeatherStatusText.setText(LocalDataActivity.getDescription());
         }
         if (key.equals("Icon")) {
-            SetIcon();
+            SetIcon(LocalDataActivity.getIconId());
         }
         if (key.equals("FeelsLike")) {
 

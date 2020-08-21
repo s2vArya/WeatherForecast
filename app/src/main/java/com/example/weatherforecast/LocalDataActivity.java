@@ -25,7 +25,6 @@ public abstract class LocalDataActivity extends AppCompatActivity {
     private static String _country;
     private static String _cityName;
 
-
     public LocalDataActivity() {
     }
 
@@ -174,19 +173,19 @@ public abstract class LocalDataActivity extends AppCompatActivity {
     public void GetDataFromLocal() {
         SharedPreferences pref = getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        String mainState = pref.getString("MainState", null);
-        String description = pref.getString("Description", null);
-        String icon = pref.getString("Icon", null);
-        String temp = pref.getString("Temp", null);
-        String feelsLike = pref.getString("FeelsLike", null);
-        String minTemp = pref.getString("MinTemp", null);
-        String maxTemp = pref.getString("MaxTemp", null);
-        String pressure = pref.getString("Pressure", null);
-        String humidity = pref.getString("Humidity", null);
-        String windSpeed = pref.getString("WindSpeed", null);
-        String windAngle = pref.getString("WindAngle", null);
-        String country = pref.getString("Country", null);
-        String cityName = pref.getString("CityName", null);
+        String mainState = pref.getString("MainState", _mainState);
+        String description = pref.getString("Description", _description);
+        String icon = pref.getString("Icon", _iconId);
+        String temp = pref.getString("Temp", _temp);
+        String feelsLike = pref.getString("FeelsLike", _feels_like);
+        String minTemp = pref.getString("MinTemp", _temp_min);
+        String maxTemp = pref.getString("MaxTemp", _temp_max);
+        String pressure = pref.getString("Pressure", _pressure);
+        String humidity = pref.getString("Humidity", _humidity);
+        String windSpeed = pref.getString("WindSpeed", _speed);
+        String windAngle = pref.getString("WindAngle", _degree);
+        String country = pref.getString("Country", _country);
+        String cityName = pref.getString("CityName", _cityName);
         set_mainState(mainState);
         set_description(description);
         set_iconId(icon);

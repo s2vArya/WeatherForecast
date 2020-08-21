@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="LightColorSurface">#7AF3E7</color>
-    <color name="LightColorDarkBackGround">#36DCE3</color>
-    <color name="LightColorBackGround">#6CD9FB</color>
-    <color name="LightColorAccent">#03DAC5</color>
-    <color name="LightColorWhite">#FFFFFF</color>
-    <color name="LightColorWhiteCard">#03DAC5</color>
-    <color name="LightColorBlack">#000000</color>
-    <color name="LightColorTextPrimary">#00424242</color>
-
-    <color name="DarkColorSurface">#222222</color>
-    <color name="DarkColorDarkBackGround">#000000</color>
-    <color name="DarkColorPrimary">#6200EE</color>
-    <color name="DarkColorSecondary">#3700B3</color>
-    <color name="DarkColorAccent">#03DAC5</color>
-    <color name="DarkColorOnSurface">#FFFFFF</color>
-    <color name="DarkColorDarkOnBackGround">#A8A8A8</color>
-    <color name="DarkColorOnPrimary">#000000</color>
-    <color name="DarkColorOnSecondary">#FFFFFF</color>
-    <color name="DarkColorOnAccent">#303030</color>
+    <color name="ColorDarkBackGround">#36DCE3</color>
+    <color name="ColorOnDarkBackGround">#EFEFEF</color>
+    <color name="ColorBackGround">#6CD9FB</color>
+    <color name="ColorOnBackGround">#252525</color>
+    <color name="ColorSurface">#6CD9FB</color>
+    <color name="ColorOnSurface">#FFEB3B</color>
 </resources>

@@ -1,10 +1,8 @@
 package com.example.weatherforecast;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 public class SplashScreenActivity extends ApiDataRequest {
 
@@ -28,14 +26,11 @@ public class SplashScreenActivity extends ApiDataRequest {
         }, 3000);
     }
 
-    private void checkSharedPref()
-    {
-        if (LocalDataActivity.getCityName() == null)
-        {
+    private void checkSharedPref() {
+        if (LocalDataActivity.getCityName() == null) {
             RequestByCityName("delhi", getApplicationContext());
             TransitionFunction();
-        }
-        else {
+        } else {
             RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
             TransitionFunction();
         }

@@ -1,53 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Light application theme. -->
-    <style name="LightTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="LightTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/LightColorSurface</item>
-        <item name="colorPrimaryDark">@color/LightColorDarkBackGround</item>
-        <item name="colorAccent">@color/LightColorAccent</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
-        <item name="android:textColor">@color/LightColorBlack</item>
-        <item name="android:textColorPrimary">@color/LightColorWhite</item>
-    </style>
-
-    <style name="wf.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextAppearance">@style/wf.TextInputLayout.HintText</item>
-        <item name="hintTextColor">?android:attr/colorPrimary</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="boxStrokeColor">?android:attr/colorPrimary</item>
-    </style>
-
-    <style name="wf.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-    
-    <style name="wf.Material.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="backgroundTint">?attr/colorPrimaryDark</item>
-    </style>
-
-    <style name="wf.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">?android:attr/textColor</item>
-        <item name="materialButtonOutlinedStyle">@style/Widget.MaterialComponents.Button.OutlinedButton</item>
-    </style>
-
-    <style name="wf.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?attr/colorAccent</item>
-        <item name="android:theme">@style/LightTheme</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="titleTextAppearance">@style/wf.TextAppearance.Toolbar</item>
-    </style>
-
-    <style name="wf.TextAppearance.Toolbar" parent="TextAppearance.MaterialComponents.Button">
-        <item name="backgroundTint">?android:attr/colorAccent</item>
-        <item name="android:textColor">?android:attr/colorPrimaryDark</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="wf.TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="colorPrimary">@color/ColorBackGround</item>
+        <item name="colorPrimaryDark">@color/ColorDarkBackGround</item>
+        <item name="colorAccent">@color/ColorSurface</item>
+        <item name="android:textColor">@color/ColorOnBackGround</item>
+        <item name="android:textColorPrimary">@color/ColorOnDarkBackGround</item>
+        <item name="android:colorControlNormal">@color/ColorOnSurface</item>
     </style>
 
     <style name="wf.CardView" parent="CardView">
@@ -55,27 +15,13 @@
         <item name="cardPreventCornerOverlap">true</item>
         <item name="cardElevation">6dp</item>
         <item name="android:layout_margin">3dp</item>
-        <item name="cardBackgroundColor">@color/LightColorDarkBackGround</item>
-    </style>
-
-    <style name="wf.Backdrop" parent="">
-        <item name="android:background">?attr/colorAccent</item>
+        <item name="cardBackgroundColor">@color/ColorDarkBackGround</item>
     </style>
 
     <style name="LightTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-    </style>
-
-
-    <!--Dark application theme-->
-    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
-        <item name="colorPrimary">@color/LightColorTextPrimary</item>
-        <item name="colorPrimaryDark">@color/LightColorBlack</item>
-        <item name="colorAccent">@color/LightColorAccent</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

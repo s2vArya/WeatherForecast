@@ -34,13 +34,14 @@
             <TextView
                 android:id="@+id/mainTempTxt"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="36"
-                android:textSize="150sp"
+                android:layout_height="190dp"
                 android:shadowColor="#000000"
                 android:shadowDx="5"
                 android:shadowDy="5"
-                android:shadowRadius="5"/>
+                android:shadowRadius="5"
+                android:text="36"
+                android:textAlignment="center"
+                android:textSize="150sp" />
 
             <TextView
                 android:id="@+id/mainStateTxt"
@@ -60,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/LightColorDarkBackGround"
+        android:backgroundTint="@color/ColorDarkBackGround"
         android:src="@drawable/ic_home"
         android:visibility="gone" />
 
