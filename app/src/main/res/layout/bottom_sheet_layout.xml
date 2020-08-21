@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="0dp"
     android:background="@drawable/bottom_sheet_design">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/bg3"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/bs_allDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Details"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_marginTop="10dp">
     <TextView
         android:id="@+id/bs_cityName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="City Name"
+        android:text="Loading...."
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/bs_allDetails"/>
 
     <TextView
         android:id="@+id/bs_mainState"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_cityName"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -29,18 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_mainState"
-        android:gravity="center"
-        android:text="City Name"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/bs_iconId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bs_description"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -49,8 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_iconId"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -59,8 +70,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_temp"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -69,8 +78,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_feels_like"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -79,8 +86,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_temp_min"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -89,8 +94,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_temp_max"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -99,8 +102,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_pressure"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -109,8 +110,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_humidity"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -119,8 +118,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_speed"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -129,9 +126,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bs_degree"
-        android:gravity="center"
-        android:text="City Name"
         android:textSize="15sp"
         android:textStyle="bold" />
+
+    </LinearLayout>
 
 </RelativeLayout>

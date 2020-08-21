@@ -137,7 +137,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         final TextView cityName = bottomSheetDialog.findViewById(R.id.bs_cityName);
         final TextView mainState = bottomSheetDialog.findViewById(R.id.bs_mainState);
         final TextView description = bottomSheetDialog.findViewById(R.id.bs_description);
-        final TextView iconId = bottomSheetDialog.findViewById(R.id.bs_iconId);
         final TextView temp = bottomSheetDialog.findViewById(R.id.bs_temp);
         final TextView feelsLike = bottomSheetDialog.findViewById(R.id.bs_feels_like);
         final TextView tempMin = bottomSheetDialog.findViewById(R.id.bs_temp_min);
@@ -151,16 +150,15 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         cityName.setText(String.format("City: %s", LocalDataActivity.getCityName()));
         mainState.setText(String.format("State: %s", LocalDataActivity.getMainState()));
         description.setText(String.format("Description: %s", LocalDataActivity.getDescription()));
-        iconId.setText(LocalDataActivity.getIconId());
-        temp.setText(String.format("%s°C", LocalDataActivity.getTemp()));
-        feelsLike.setText(LocalDataActivity.getFeelsLike());
-        tempMin.setText(LocalDataActivity.getTempMin());
-        tempMax.setText(LocalDataActivity.getTempMax());
-        pressure.setText(LocalDataActivity.getPressure());
-        humidity.setText(LocalDataActivity.getHumidity());
-        speed.setText(LocalDataActivity.getSpeed());
-        degree.setText(LocalDataActivity.getDegree());
-        country.setText(LocalDataActivity.getCountry());
+        temp.setText(String.format("Temp: %s°C", LocalDataActivity.getTemp()));
+        feelsLike.setText(String.format("Feels Like: %s", LocalDataActivity.getFeelsLike()));
+        tempMin.setText(String.format("Min Temp: %s", LocalDataActivity.getTempMin()));
+        tempMax.setText(String.format("Max Temp: %s", LocalDataActivity.getTempMax()));
+        pressure.setText(String.format("Pressure: %s", LocalDataActivity.getPressure()));
+        humidity.setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
+        speed.setText(String.format("Speed: %s", LocalDataActivity.getSpeed()));
+        degree.setText(String.format("Degree: %s", LocalDataActivity.getDegree()));
+        country.setText(String.format("Country: %s", LocalDataActivity.getCountry()));
     }
 
     @Override
