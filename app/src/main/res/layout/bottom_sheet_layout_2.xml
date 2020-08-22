@@ -35,6 +35,7 @@
         android:id="@+id/bs_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="38"
         android:textSize="100sp"
         android:textStyle="bold"
@@ -44,105 +45,103 @@
     <TextView
         android:id="@+id/bs_mainState"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="24dp"
         android:text="Sunny"
         android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bs_feels_like"
         app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_temp" />
+        app:layout_constraintTop_toBottomOf="@+id/bs_temp"
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/bs_feels_like"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="24dp"
         android:text="feels like"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_mainState" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_description"
+        app:layout_constraintStart_toEndOf="@+id/divider5" />
 
     <TextView
         android:id="@+id/bs_description"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="24dp"
         android:text="description"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_feels_like" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_temp_min"
+        app:layout_constraintStart_toEndOf="@+id/divider5" />
 
     <TextView
         android:id="@+id/bs_temp_min"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Min"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_description" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_temp_max"
+        app:layout_constraintStart_toEndOf="@+id/divider5" />
 
     <TextView
         android:id="@+id/bs_temp_max"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Max"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_temp_min" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_pressure"
+        app:layout_constraintStart_toEndOf="@+id/divider5" />
 
     <TextView
         android:id="@+id/bs_pressure"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginBottom="24dp"
         android:text="Pressure"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_temp_max" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_speed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/bs_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginBottom="24dp"
         android:text="wind"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/divider5"
-        app:layout_constraintTop_toBottomOf="@+id/bs_pressure" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_humidity"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/bs_humidity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="200dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="32dp"
         android:text="humidity"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bs_speed" />
+        app:layout_constraintBottom_toTopOf="@+id/bs_degree"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/bs_degree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="250dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
         android:text="degree"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bs_humidity" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
