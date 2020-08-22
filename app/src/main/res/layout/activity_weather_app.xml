@@ -39,7 +39,7 @@
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
-                android:text="36"
+                android:text="@string/medium_dimen"
                 android:textAlignment="center"
                 android:textSize="150sp" />
 
@@ -47,22 +47,10 @@
                 android:id="@+id/mainStateTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mainState"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <include layout="@layout/activity_detail_card_view" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addHomeFloatingBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/ColorDarkBackGround"
-        android:src="@drawable/ic_home"
-        android:visibility="gone" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
