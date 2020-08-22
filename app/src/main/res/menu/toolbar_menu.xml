@@ -9,5 +9,4 @@
         app:actionViewClass="android.widget.SearchView"
         android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
         app:showAsAction="always" />
-
 </menu>
