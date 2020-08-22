@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -123,9 +124,9 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private void bottomSheetFunction() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
-        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout,
-                (RelativeLayout) findViewById(R.id.bottom_sheet_container));
-        bottomSheetView.findViewById(R.id.bottom_sheet_container).setOnClickListener(new View.OnClickListener() {
+        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout_2,
+                (ConstraintLayout) findViewById(R.id.bottom_sheet_container2));
+        bottomSheetView.findViewById(R.id.bottom_sheet_container2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bottomSheetDialog.dismiss();
@@ -145,7 +146,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         final TextView humidity = bottomSheetDialog.findViewById(R.id.bs_humidity);
         final TextView speed = bottomSheetDialog.findViewById(R.id.bs_speed);
         final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
-        final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
+        //final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
 
         cityName.setText(String.format("City: %s", LocalDataActivity.getCityName()));
         mainState.setText(String.format("State: %s", LocalDataActivity.getMainState()));
@@ -158,7 +159,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         humidity.setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
         speed.setText(String.format("Speed: %s", LocalDataActivity.getSpeed()));
         degree.setText(String.format("Degree: %s", LocalDataActivity.getDegree()));
-        country.setText(String.format("Country: %s", LocalDataActivity.getCountry()));
+        //country.setText(String.format("Country: %s", LocalDataActivity.getCountry()));
     }
 
     @Override
