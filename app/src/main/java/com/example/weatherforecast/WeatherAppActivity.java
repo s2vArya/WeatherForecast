@@ -7,25 +7,21 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.Objects;
+
 public class WeatherAppActivity extends ApiDataRequest implements View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private Toolbar customToolbar;
-    private FrameLayout toolbarLayout;
     private ImageView cardWeatherStatusImage;
     private TextView cardWeatherStatusText;
     private TextView cardWeatherStatusTemperature;
@@ -33,7 +29,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private TextView windAngleTxt;
     private TextView pressureTxt;
     private TextView humidityTxt;
-    private CardView todayDetailCardView;
     private TextView mMainTempTxt;
     private TextView mMainStateTxt;
     private SearchView searchView;
@@ -46,8 +41,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         SetUpToolBar();
         GetDataFromLocal();
 
-        customToolbar = findViewById(R.id.customToolbar);
-        toolbarLayout = findViewById(R.id.toolbarLayout);
         mMainTempTxt = findViewById(R.id.mainTempTxt);
         mMainStateTxt = findViewById(R.id.mainStateTxt);
         cardWeatherStatusImage = findViewById(R.id.cardWeatherStatusImage);
@@ -57,7 +50,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         windAngleTxt = findViewById(R.id.windAngleTxt);
         pressureTxt = findViewById(R.id.pressureTxt);
         humidityTxt = findViewById(R.id.humidityTxt);
-        todayDetailCardView = findViewById(R.id.todayDetailCardView);
+        CardView todayDetailCardView = findViewById(R.id.todayDetailCardView);
         todayDetailCardView.setOnClickListener(this);
 
         HandleIntent(getIntent());
@@ -106,7 +99,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
                 case "50d":
                 case "50n":
                     cardWeatherStatusImage.setImageResource(R.drawable.a50d);
-                    return;
             }
         } else {
             cardWeatherStatusImage.setImageResource(R.drawable.a01d);
@@ -147,18 +139,18 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
         final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
 
-        cityName.setText(String.format("City: %s", LocalDataActivity.getCityName()));
-        mainState.setText(String.format("State: %s", LocalDataActivity.getMainState()));
-        description.setText(String.format("Description: %s", LocalDataActivity.getDescription()));
-        temp.setText(String.format("Temp: %s°C", LocalDataActivity.getTemp()));
-        feelsLike.setText(String.format("Feels Like: %s", LocalDataActivity.getFeelsLike()));
-        tempMin.setText(String.format("Min Temp: %s", LocalDataActivity.getTempMin()));
-        tempMax.setText(String.format("Max Temp: %s", LocalDataActivity.getTempMax()));
-        pressure.setText(String.format("Pressure: %s", LocalDataActivity.getPressure()));
-        humidity.setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
-        speed.setText(String.format("Speed: %s", LocalDataActivity.getSpeed()));
-        degree.setText(String.format("Degree: %s", LocalDataActivity.getDegree()));
-        country.setText(String.format("Country: %s", LocalDataActivity.getCountry()));
+        Objects.requireNonNull(cityName).setText(String.format("City: %s", LocalDataActivity.getCityName()));
+        Objects.requireNonNull(mainState).setText(String.format("State: %s", LocalDataActivity.getMainState()));
+        Objects.requireNonNull(description).setText(String.format("Description: %s", LocalDataActivity.getDescription()));
+        Objects.requireNonNull(temp).setText(String.format("Temp: %s°C", LocalDataActivity.getTemp()));
+        Objects.requireNonNull(feelsLike).setText(String.format("Feels Like: %s", LocalDataActivity.getFeelsLike()));
+        Objects.requireNonNull(tempMin).setText(String.format("Min Temp: %s", LocalDataActivity.getTempMin()));
+        Objects.requireNonNull(tempMax).setText(String.format("Max Temp: %s", LocalDataActivity.getTempMax()));
+        Objects.requireNonNull(pressure).setText(String.format("Pressure: %s", LocalDataActivity.getPressure()));
+        Objects.requireNonNull(humidity).setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
+        Objects.requireNonNull(speed).setText(String.format("Speed: %s", LocalDataActivity.getSpeed()));
+        Objects.requireNonNull(degree).setText(String.format("Degree: %s", LocalDataActivity.getDegree()));
+        Objects.requireNonNull(country).setText(String.format("Country: %s", LocalDataActivity.getCountry()));
     }
 
     @Override
@@ -209,15 +201,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         if (key.equals("Icon")) {
             SetIcon(LocalDataActivity.getIconId());
         }
-        if (key.equals("FeelsLike")) {
-
-        }
-        if (key.equals("MinTemp")) {
-
-        }
-        if (key.equals("MaxTemp")) {
-
-        }
         if (key.equals("Pressure")) {
             pressureTxt.setText(String.format("Pressure: %s", LocalDataActivity.getPressure()));
         }
@@ -229,9 +212,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         }
         if (key.equals("WindAngle")) {
             windAngleTxt.setText(String.format("Direction: %s", LocalDataActivity.getDegree()));
-        }
-        if (key.equals("Country")) {
-
         }
         if (key.equals("CityName")) {
             toolbar.setTitle(LocalDataActivity.getCityName());

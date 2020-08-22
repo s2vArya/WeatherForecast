@@ -35,7 +35,7 @@
         android:shadowDy="5"
         android:shadowRadius="5"
         android:textColor="@color/ColorOnDarkBackGround"
-        android:text="- Powered By OpenWeatherMap"
+        android:text="@string/powered_by_open_weather_map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

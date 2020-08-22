@@ -29,11 +29,10 @@ public class SplashScreenActivity extends ApiDataRequest {
     private void checkSharedPref() {
         if (LocalDataActivity.getCityName() == null) {
             RequestByCityName("delhi", getApplicationContext());
-            TransitionFunction();
         } else {
             RequestByCityName(LocalDataActivity.getCityName(), getApplicationContext());
-            TransitionFunction();
         }
+        TransitionFunction();
     }
 
     private void TransitionFunction() {
