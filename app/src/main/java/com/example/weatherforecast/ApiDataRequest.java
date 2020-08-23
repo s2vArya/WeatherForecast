@@ -17,9 +17,7 @@ import org.json.JSONObject;
 
 public class ApiDataRequest extends LocalDataActivity {
 
-    /**
-     * Mintu Giri
-     **/
+    //<MINTU-----
     private static String _mainState;
     private static String _description;
     private static String _iconId;
@@ -33,15 +31,14 @@ public class ApiDataRequest extends LocalDataActivity {
     private static String _degree;
     private static String _country;
     private static String _cityName;
-    /**
-     * Mintu Giri
-     **/
+    //----------MINTU>
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    //request forecast data from api
     public void RequestByCityName(String cityName, final Context context) {
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=0466c2473f115a4d226c8ce8b6280210";
         // Instantiate the RequestQueue.

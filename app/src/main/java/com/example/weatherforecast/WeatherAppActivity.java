@@ -56,11 +56,13 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         HandleIntent(getIntent());
     }
 
+    //handling custom toolbar
     private void SetUpToolBar() {
         toolbar = findViewById(R.id.customToolbar);
         setSupportActionBar(toolbar);
     }
 
+    //Setting icon on weather state changes
     private void SetIcon(String iconId) {
         if (iconId != null) {
             switch (LocalDataActivity.getIconId()) {
@@ -112,8 +114,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         }
     }
 
+    //<MINTU--
     private void bottomSheetFunction() {
-
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout,
                 (ConstraintLayout) findViewById(R.id.bottom_sheet_container));
@@ -140,7 +142,6 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         final TextView humidity = bottomSheetDialog.findViewById(R.id.bs_humidity);
         final TextView speed = bottomSheetDialog.findViewById(R.id.bs_speed);
         final TextView degree = bottomSheetDialog.findViewById(R.id.bs_degree);
-        //final TextView country = bottomSheetDialog.findViewById(R.id.bs_country);
 
         Objects.requireNonNull(cityName).setText(String.format("%s", LocalDataActivity.getCityName()));
         Objects.requireNonNull(mainState).setText(String.format("%s", LocalDataActivity.getMainState()));
@@ -153,8 +154,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         Objects.requireNonNull(humidity).setText(String.format("Humidity: %s", LocalDataActivity.getHumidity()));
         Objects.requireNonNull(speed).setText(String.format("Speed: %s", LocalDataActivity.getSpeed()));
         Objects.requireNonNull(degree).setText(String.format("Degree: %s", LocalDataActivity.getDegree()));
-        //country.setText(String.format("Country: %s", LocalDataActivity.getCountry()));
     }
+    //------MINTU>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,6 +169,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         return true;
     }
 
+    //Setting new intent for the search view query
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -186,6 +188,8 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
         }
     }
 
+    //<MINTU---
+    //checking the state of changing data in shared preferences and setting it
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         GetDataFromLocal();
@@ -224,12 +228,14 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
-        LocalDataActivity.registerPref(this, this);
+        LocalDataActivity.registerPref(this, this);//registering the Shared Preference
     }
 
+    //handling the actions after destroying app process
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalDataActivity.unregisterPref(this, this);
+        LocalDataActivity.unregisterPref(this, this);//unregistering the Shared Preference
     }
+    //------------MINTU>
 }

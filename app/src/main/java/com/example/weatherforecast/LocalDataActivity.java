@@ -8,9 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class LocalDataActivity extends AppCompatActivity {
 
-    /**
-     * Mintu Giri
-     **/
     private static String _mainState;
     private static String _description;
     private static String _iconId;
@@ -70,10 +67,6 @@ public abstract class LocalDataActivity extends AppCompatActivity {
 
     public static String getDegree() {
         return _degree;
-    }
-
-    public static String getCountry() {
-        return _country;
     }
 
     public static String getCityName() {
@@ -221,6 +214,7 @@ public abstract class LocalDataActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    //<MINTU----
     public static void registerPref(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
         SharedPreferences pref = context.getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         pref.registerOnSharedPreferenceChangeListener(listener);
@@ -230,4 +224,5 @@ public abstract class LocalDataActivity extends AppCompatActivity {
         SharedPreferences pref = context.getSharedPreferences("Weather Data", Context.MODE_PRIVATE);
         pref.unregisterOnSharedPreferenceChangeListener(listener);
     }
+    //-------MINTU>
 }

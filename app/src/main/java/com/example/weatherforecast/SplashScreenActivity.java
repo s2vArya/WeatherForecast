@@ -13,7 +13,7 @@ public class SplashScreenActivity extends ApiDataRequest {
         SplashScreenHandling();
     }
 
-    /*Splash Screen Function*/
+    //Splash Screen Function
     private void SplashScreenHandling() {
 
         new Handler().postDelayed(new Runnable() {
@@ -26,6 +26,7 @@ public class SplashScreenActivity extends ApiDataRequest {
         }, 3000);
     }
 
+    //checking the null state of shared preferences and having data
     private void checkSharedPref() {
         if (LocalDataActivity.getCityName() == null) {
             RequestByCityName("delhi", getApplicationContext());
