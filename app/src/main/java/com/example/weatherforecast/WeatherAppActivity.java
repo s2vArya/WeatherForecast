@@ -115,7 +115,7 @@ public class WeatherAppActivity extends ApiDataRequest implements View.OnClickLi
     private void bottomSheetFunction() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(WeatherAppActivity.this, R.style.BottomSheetDialogTheme);
-        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout_2,
+        View bottomSheetView = LayoutInflater.from(WeatherAppActivity.this).inflate(R.layout.bottom_sheet_layout,
                 (ConstraintLayout) findViewById(R.id.bottom_sheet_container));
         bottomSheetView.findViewById(R.id.bottom_sheet_container).setOnClickListener(new View.OnClickListener() {
             @Override

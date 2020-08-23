@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="16dp"
     android:layout_marginLeft="16dp"
-    android:orientation="vertical"
-    tools:context=".detailCardViewActivity">
+    android:layout_marginRight="16dp"
+    android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/todayDetailCardView"
         style="@style/wf.CardView"
@@ -27,15 +26,14 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
+                android:contentDescription="@string/sunny"
                 android:src="@drawable/a01d"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/sunny" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:textColor="@color/ColorOnDarkBackGround"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -45,6 +43,7 @@
                 android:shadowDy="5"
                 android:shadowRadius="5"
                 android:text="@string/today"
+                android:textColor="@color/ColorOnDarkBackGround"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +58,8 @@
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
-                android:textSize="20sp"
                 android:textColor="@color/ColorOnDarkBackGround"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/cardWeatherStatusTemperature"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -71,14 +70,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:paddingEnd="@dimen/min_dimen"
                 android:paddingStart="0dp"
+                android:paddingEnd="@dimen/min_dimen"
                 android:shadowColor="@color/ColorOnBackGround"
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
-                android:textColor="@color/ColorOnDarkBackGround"
                 android:textAlignment="textStart"
+                android:textColor="@color/ColorOnDarkBackGround"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/cardWeatherStatusText"

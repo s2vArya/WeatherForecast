@@ -23,7 +23,6 @@
 
         <activity android:name=".LocalDataActivity" />
         <activity android:name=".ApiDataRequest" />
-        <activity android:name=".detailCardViewActivity" />
         <activity android:name=".SplashScreenActivity"
             android:theme="@style/LightTheme.NoActionBar">
             <intent-filter>
